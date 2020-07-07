@@ -1,0 +1,16 @@
+.content-header {
+    margin-bottom: 20px !important;
+  }
+.row{
+  margin-bottom: 12px !important;
+}
+.tombol{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  
+}
+
+.action{
+  width: 10%;
+}

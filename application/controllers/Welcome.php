@@ -20,6 +20,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('homedesk');
+		$Title = ['title'=>"Home"];
+		$this->load->view('template/header', $Title);
+		$this->load->view('admin/dashboar');
+		$this->load->view('template/footer');
 	}
 }

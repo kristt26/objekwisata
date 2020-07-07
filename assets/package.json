@@ -45,7 +45,7 @@
     "inputmask": "^3.3.7",
     "ion-rangeslider": "^2.3",
     "ionicons": "^3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "jquery-knob": "^1.2.11",
     "jquery-sparkline": "^2.4",
     "jquery-ui": "^1.12.1",
@@ -55,6 +55,7 @@
     "pace": "0.0.4",
     "raphael": "^2.2.7",
     "select2": "^4.0.3",
-    "slimscroll": "^0.9.1"
+    "slimscroll": "^0.9.1",
+    "sweetalert": "^2.1.2"
   }
 }
