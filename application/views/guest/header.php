@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iCONIC.com</title>
+  <title><?= $title?></title>
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
@@ -20,11 +20,12 @@
       </div>
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav navbar-right">
-          <li role="presentation"><a href="#home">HOME</a></li>
-          <li role="presentation"><a href="#news">NEWS</a></li>
-          <li role="presentation"><a href="#gallery">GALLERY</a></li>
-          <li role="presentation"><a href="#about">ABOUT</a></li>
-          <li role="presentation"><a href="#"><i class="glyphicon glyphicon-search"></i></a></li>
+          <li role="presentation"><a href="<?= base_url()?>home">Home</a></li>
+          <li role="presentation"><a href="#news">Event</a></li>
+          <li role="presentation"><a href="#gallery">Wisata</a></li>
+          <li role="presentation"><a href="#about">About</a></li>
+          <li role="presentation"><a href="<?= base_url()?>auth">Login</a></li>
+          <!-- <li role="presentation"><a href="#"><i class="glyphicon glyphicon-search"></i></a></li> -->
         </ul>
       </div>
     </div>
