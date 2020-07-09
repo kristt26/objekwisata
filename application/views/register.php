@@ -34,7 +34,7 @@
   <div class="data-flush" data-flash="<?= $this->session->flashdata('pesan');?>"></div>
   <div class="register-box">
     <div class="register-logo">
-      <a href="<?php echo base_url();?>assets/index2.html"><b>Admin</b>LTE</a>
+      <a href="<?php echo base_url();?>assets/index2.html"><b>Wisata Papua</b></a>
     </div>
 
     <div class="register-box-body">
@@ -85,13 +85,14 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center">
+      <!-- <div class="social-auth-links text-center">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
           Facebook</a>
+        <?= $login_button; ?>
         <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
           Google+</a>
-      </div>
+      </div> -->
 
       <a href="<?= base_url()?>Auth" class="text-center">Sudah punya akun</a>
     </div>

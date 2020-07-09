@@ -34,25 +34,25 @@
   <div class="data-flush" data-flash="<?= $this->session->flashdata('pesan');?>"></div>
   <div class="login-box">
     <div class="login-logo">
-      <a href="<?php echo base_url();?>assets/index2.html"><b>Admin</b>LTE</a>
+      <a href="<?php echo base_url();?>assets/index2.html"><b>Wisata</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="<?php echo base_url();?>assets/index2.html" method="post">
+      <form action="<?php echo base_url();?>auth/login" method="post">
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="text" class="form-control" name="username" placeholder="username" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">
           <!-- /.col -->
           <div class="col-xs-4 pull-right">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
           </div>
           <!-- /.col -->
         </div>
@@ -60,10 +60,9 @@
 
       <div class="social-auth-links text-center">
         <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-          Facebook</a>
-        <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-          Google+</a>
+          <?= $login_button;?>
+        <!-- <a href="<?= base_url()?>google_login/login" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+          Google+</a> -->
       </div>
       <!-- /.social-auth-links -->
 

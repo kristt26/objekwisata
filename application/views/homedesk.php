@@ -1,44 +1,74 @@
-<!DOCTYPE html>
-<html>
+  <div id="background">
+    <div class="jumbotron">
+      <h1>Danau Sentai</h1>
+      <!-- <p>Think BIG with a Bootstrap Jumbotron!</p> -->
+    </div>
+    <!-- <div class="jumbotron">
+      <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+      <h1>INDONESIA</h1>
+      <p><a href="#" class="btn btn-default" role="button">EXPLORE</a></p>
+    </div> -->
+  </div>
+  <!-- jumbotron -->
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iCONIC.com</title>
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
-</head>
-
-<body>
-  <!-- navbar -->
-  <nav class="navbar navbar-inverse navbar-static-top ">
-    <div class="container" id="navbar">
-      <div class="navbar-header">
-        <a href="#" class="navbar-brand navbar-link">wisata</a>
-        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-      </div>
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li role="presentation"><a href="#home">HOME</a></li>
-          <li role="presentation"><a href="#news">NEWS</a></li>
-          <li role="presentation"><a href="#gallery">GALLERY</a></li>
-          <li role="presentation"><a href="#about">ABOUT</a></li>
-          <li role="presentation"><a href="#"><i class="glyphicon glyphicon-search"></i></a></li>
-        </ul>
+  <!-- container atas -->
+  <div id="news">
+    <div class="container">
+      <h1 style="margin-bottom: 25px; text-align: center;">Event Wisata</h1>
+      <div class="row">
+        <?php foreach($event as $item):?>
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+            <div class="thumbnail">
+              <div style="margin-left:12px; margin-right:12px">
+                <a href="<?= base_url()?>guest/event/readevent/<?= $item->idevent; ?>"><h3 style="text-align:center;"><?= $item->nama; ?></h3></a>
+                <p class="text-justify"><?= $item->stringtext . ' ...'?></p>
+                <hr>
+                <p  class="text-center">
+                  <a href="#" style="color: black;"><i class="fa fa-user"></i> &nbsp; ADMIN</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="#" style="color: black;"><i class="fa fa-calendar"></i> &nbsp; <?= $item->tgl_posting?></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        <?php endforeach;?>
       </div>
     </div>
-  </nav>
+  </div>
+  <!-- container news -->
 
-
-  <div class="div">
-    <div class="container kaki">
-      <h5 class="text-center">iCONIC. © 2018</h5>
+  <!-- gallery -->
+  <div id="gallery">
+    <div class="container">
+      <h1>Gallery</h1>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="satu"><img class="img-responsive" src="<?= base_url()?>assets/img/gambar-3-A.jpg" width="3000px"></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="satu"><img class="img-responsive" src="assets/img/gambar-3-B.jpg" width="300px"></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="satu"><img class="img-responsive" src="assets/img/gambar-3-C.jpg" width="300px"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="dua"><img class="img-responsive" src="assets/img/gambar-3-D.jpg" width="600px"></div>
+      </div>
     </div>
-</div>
-  <!-- kaki -->
-  <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
+  </div>
+  <!-- gallery -->
 
-</html>
+  <!-- about -->
+  <div id="about">
+    <div class="container footer">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <h1> <img src="assets/img/logoo.png" width="180px"></h1>
+        <h2>About Us</h2>
+        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus...</p>
+      </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <h2>Newsletter Subscription</h2>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" value="Your Email">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Subscribe </button>
+            </div>
+          </div>
+          <div id="icon"><i class="fa fa-instagram"></i><i class="fa fa-facebook-official"></i><i class="fa fa-twitter-square"></i><i class="fa fa-youtube-play"></i></div>
+        </div>
+    </div>
+  </div>
+
+

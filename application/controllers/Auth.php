@@ -6,57 +6,59 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('Authorization_Token');
         $this->load->model("admin/Wisata_model", "WisataModel");
-        $this->load->model('admin/Kategori_model', 'KategoriModel');
+        $this->load->model('User_model');
+        
     }
+    
 
     public function index()
     {
-        if($this->session->userdata('authenticated'))
-            redirect('page/welcome');
-        $this->load->view('login');
+        $data['login_button'] = $this->mylib->btngoogle();
+        $this->load->view('login', $data);
         
+    }
+    public function logout()
+    {
+        $this->session->unset_userdata('access_token');
+        $this->session->unset_userdata('user_data');
+        $this->session->unset_userdata('authenticated');
+        redirect('auth');
+    }
+    function login()
+    {
+        $data = [
+            'username' => $this->input->post('username', true),
+            'password' => md5($this->input->post('password', true))
+        ];
+        $output = $this->User_model->get($data);        
+        if(isset($output['message'])){
+            $data['login_button'] = $this->mylib->btngoogle();
+            $this->session->set_flashdata('pesan', $output['message'].', error');
+            $this->load->view('login', $data);
+        }else{
+            $this->session->set_userdata('user_data', $output);
+            redirect('welcome');
+        }
+
+    }
+    
+    function confirm($key)
+    {
+        $is_valid_token = $this->authorization_token->validateTokenPost($key);
+        if ($is_valid_token['status'] === true) {
+            $output = $this->User_model->confirm($is_valid_token['data']);
+            if($output){
+                $this->session->set_flashdata('pesan', 'Akun anda telah aktif silahkan login, success');
+                redirect('auth');
+            }else{
+                $this->session->set_flashdata('pesan', 'Token aktivasi telah expire \n ajukan permintaan baru, error');
+                redirect('auth');
+            }
+        }
     }
 
-    public function getByid()
-    {
-        $data = $this->input->post();
-        $data = $this->WisataModel->selectbyid($data);
-        echo json_encode($data);
-    }
-    public function tambah()
-    {
-        $data = $this->input->post();
-        $output = $this->WisataModel->insert($data);
-        if($output){
-            $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, success');
-            redirect('admin/wisata');
-        }else{
-            $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, error');
-            redirect('admin/wisata');
-        }
-        
-        
-	}
-	public function ubah()
-    {
-        $data = $this->input->post();
-        $output = $this->WisataModel->update($data);
-        if ($output) {
-            $this->session->set_flashdata('pesan', 'Berhasil di Ubah, success');
-            redirect('admin/wisata');
-        }else{
-            $this->session->set_flashdata('pesan', 'Gagal di Ubah, error');
-            redirect('admin/wisata');
-        }
-	}
-	public function hapus()
-    {
-        $data = $this->input->post();
-		$output = $this->WisataModel->delete($data);
-		$this->session->set_flashdata('error', 'Berhasil di Ubah');
-		redirect('admin/kategori');
-        
-    }
+    
         
 }

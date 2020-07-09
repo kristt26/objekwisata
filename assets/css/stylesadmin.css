@@ -14,3 +14,7 @@
 .action{
   width: 10%;
 }
+
+.panel-default>.panel-heading {
+  padding-bottom: 20px;
+}

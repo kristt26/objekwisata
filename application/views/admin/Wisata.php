@@ -57,6 +57,7 @@
                                                     <th>Keterangan</th>
                                                     <th>long</th>
                                                     <th>Lat</th>
+                                                    <th>Foto</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -72,6 +73,7 @@
                                                     <td><?= $itemwisata['keterangan'];?></td>
                                                     <td><?= $itemwisata['long'];?></td>
                                                     <td><?= $itemwisata['lat'];?></td>
+                                                    <td><img src="<?= base_url().'assets/img/wisata/foto/' . $itemwisata['foto'];?>" width = "100px"/></td>
                                                     <td class="action"><button
                                                         class="btn btn-default btn-edit-wisata" data-idwisata="<?= $itemwisata['idwisata'];?>" data-nama="<?= $itemwisata['nama'];?>" data-alamat="<?= $itemwisata['alamat'];?>" data-keterangan="<?= $itemwisata['keterangan'];?>" data-long="<?= $itemwisata['long'];?>" data-lat="<?= $itemwisata['lat'];?>"><i class="fa fa-edit"></i></button>
                                                         <button
@@ -174,7 +176,11 @@
                     </div>
                     <div class="form-group">
                         <label>keterangan</label>
-                        <textarea type="text" name="alamat" class="form-control" id="keterangan" placeholder="keterangan" required></textarea>
+                        <textarea type="text" name="keterangan" class="form-control" id="keterangan" placeholder="keterangan" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto</label>
+                        <input type="file" class="form-control" name="foto" size="20" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -226,6 +232,10 @@
                     <div class="form-group">
                         <label>keterangan</label>
                         <textarea type="text" name="keterangan" class="form-control keterangan" id="keterangan" placeholder="keterangan" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto</label>
+                        <input type="file" class="form-control" name="foto" size="20" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>

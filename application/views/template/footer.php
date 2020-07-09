@@ -28,6 +28,9 @@
   <!-- SlimScroll -->
   <script src="<?php echo base_url();?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
   <script src="<?php echo base_url();?>assets/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="<?php echo base_url();?>assets/bower_components/ckeditor/ckeditor.js"></script>
+  <script src="<?php echo base_url();?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
   <!-- <script src="<?php echo base_url();?>assets/dist/js/pages/dashboard2.js"></script> -->
   <!-- AdminLTE for demo purposes -->
   <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>

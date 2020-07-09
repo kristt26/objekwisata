@@ -8,12 +8,15 @@ class Kategori extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin/Kategori_model', 'KategoriModel');
-
+        if(!$this->session->userdata('user_data'))
+		{
+			redirect('auth');
+		}
     }
 
     public function index()
     {
-        $Title = ['title'=>"Kategori Wisata"];
+        $Title = ['title'=>"Kategori Wisata", 'titledash'=>"Kategori Wisata"];
 		$data['kategori'] = $this->KategoriModel->select();
         $this->load->view('template/header', $Title);
         $this->load->view('admin/kategori', $data);
@@ -30,7 +33,7 @@ class Kategori extends CI_Controller
 			$this->load->view('template/footer');
         } else {
 			$output = $this->KategoriModel->insert($data);
-			$this->session->set_flashdata('pesan', 'Berhasil, di Tambahkan');
+			$this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, success');
 			redirect('admin/kategori');
         }
         

@@ -3,6 +3,7 @@ body{
   background-color: #ebe9e9
 }
 
+
 a.navbar-brand.navbar-link{
   margin-top:7px;
 }
@@ -71,11 +72,9 @@ i.glyphicon.glyphicon-search{
   color: rgb(184,182,182);
 }
 
-
-
 #background{
-  margin-top:-120px;
-  /* background:url(../../assets/img/background.jpg) no-repeat; */
+  margin-top:57px;
+  background:url(../../assets/img/home.jpg) no-repeat;
   background-size:cover;
   padding-top:111px;
   height:638px;
@@ -86,7 +85,7 @@ i.glyphicon.glyphicon-search{
   background:none;
   margin-left:137px;
   max-width:1000px;
-  margin-top:22px;
+  margin-top:100px;
 }
 
 #background .jumbotron h1{
@@ -103,7 +102,7 @@ i.glyphicon.glyphicon-search{
   padding-right:307px;
 }
 
-/* #home{
+#home{
   text-align: center;
 }
 
@@ -117,9 +116,9 @@ i.glyphicon.glyphicon-search{
 
 #home .isi .container.atas{
   background-color:#f9f8f8;
-  margin-top:-85px;
-  padding-bottom:37px;
-} */
+  /* margin-top:-85px; */
+  /* padding-bottom:37px; */
+}
 
 .glyphicon{
   position: relative;
@@ -132,9 +131,9 @@ i.glyphicon.glyphicon-search{
 }
 
 #news{
-  margin-top: 31px;
+  /* margin-top: 31px; */
   background-color: #f9f8f8;
-  padding-top: 43px;
+  /* padding-top: 43px; */
   padding-bottom: 25px;
 }
 
@@ -196,6 +195,16 @@ i.glyphicon.glyphicon-search{
   text-align: center;
   color: rgb(40,78,94);
   background-color: #0f1517;
+}
+
+#top{
+  margin-top: 50px;
+}
+.tombol{
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: row;
+  
 }
 
 

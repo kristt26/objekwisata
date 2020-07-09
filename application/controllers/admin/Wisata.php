@@ -8,11 +8,15 @@ class Wisata extends CI_Controller
         parent::__construct();
         $this->load->model("admin/Wisata_model", "WisataModel");
         $this->load->model('admin/Kategori_model', 'KategoriModel');
+        if(!$this->session->userdata('user_data'))
+		{
+			redirect('auth');
+		}
     }
 
     public function index()
     {
-        $Title = ['title'=>"Objek Wisata"];
+        $Title = ['title'=>"Objek Wisata", 'titledash'=>"Objek Wisata"];
         $data['wisata'] = $this->WisataModel->select();
         $data['kategori'] = $this->KategoriModel->select();
         $this->load->view('template/header', $Title);
