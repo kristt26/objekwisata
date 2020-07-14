@@ -1,5 +1,5 @@
 <div class="data-center" data-lat="<?= $wisata->lat?>" data-long="<?= $wisata->long?>" data-city="Papua"
-    data-keterangan="<?= $wisata->keterangan?>" data-nama="<?= $wisata->nama?>"></div>
+    data-keterangan="<?= $wisata->keterangan?>" data-nama="<?= $wisata->nama?>" data-idwisata="<?= $wisata->idwisata?>"></div>
 <div id="top">
     <div class="container">
         <div class="panel panel-default">
@@ -131,6 +131,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="nama">Longitude</label>
+                            <input type="hidden" name="idwisata" class="form-control idwisata" id="idwisata">
                             <input type="text" name="long" class="form-control long" id="long" required>
                         </div>
                     </div>
@@ -163,13 +164,16 @@
         </div>
     </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaXpkAhOkqROHQ_eKi1z6M2o2RsR1QDIk&callback=initialize"
+  type="text/javascript"></script>
 <script>
+    idwisata = $('.data-center').data('idwisata');
+    nama = $('.data-center').data('nama');
+    var itemmark = [];
+
     $(document)
         .on('click', '#clearmap', clearmap)
         .on('click', '#simpandaftarkoordinatjembatan', simpandaftarkoordinatjembatan);
-    // .on('click', '#hapusmarkerjembatan', hapusmarkerjembatan);
-    // .on('click', '#viewmarkerjembatan', viewmarkerjembatan);
     var map;
     var markers = [];
     var pos = {};
@@ -177,7 +181,7 @@
     function initialize() {
         var longc = parseFloat($('.data-center').data('long'));
         var latc = parseFloat($('.data-center').data('lat'));
-        var itemmark =
+        itemmark =
         {
             city: $('.data-center').data('city'),
             lat: latc,
@@ -188,8 +192,7 @@
         var myLatLng = { lat: longc, lng: latc };
 
         var mapOptions = {
-            zoom: 16,
-            // Center di kantor kabupaten kudus
+            zoom: 14,
             center: new google.maps.LatLng(longc - 0.000009, latc - 0.000007)
         };
         // addMarker(itemmark);
@@ -197,6 +200,7 @@
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         initMarker(itemmark);
         currentPossition();
+        showMarker();
         // Add a listener for the click event
         google.maps.event.addListener(map, 'dblclick', addLatLng);
         google.maps.event.addListener(map, "dblclick", function (event) {
@@ -205,9 +209,37 @@
             var a = { 'lat': lat, 'long': long };
             $('.lat').val(lat);
             $('.long').val(long);
+            $('.idwisata').val(idwisata);
             $('#tambah-data').modal('show');
             //alert(lat +" dan "+lng);
         });
+    }
+
+    function showMarker(){
+        var Url = "<?= base_url();?>" + "marker/ambil/" + idwisata;
+        var settings = {
+            "crossDomain": true,
+            "url": Url,
+            "method": "GET",
+            "processData": false,
+        }
+
+        $.ajax(settings).done(function (response) {
+            var dataMarking = JSON.parse(response);
+            dataMarking.forEach(loopmarker);
+        });
+    }
+
+    function loopmarker(item, index){
+        itemmarking =
+        {
+            city: item.city,
+            lat: parseFloat(item.long),
+            long: parseFloat(item.lat),
+            nama: item.title,
+            keterangan: item.desc,
+        };
+        initMarker(itemmarking);
     }
 
 	/**
@@ -262,7 +294,7 @@
             navigator.geolocation.getCurrentPosition(function (position) {
                 pos = {
                     lat: position.coords.latitude,
-                    lng: position.coords.longitude
+                    long: position.coords.longitude
                 };
 
                 // infoWindow1.setPosition(pos);
@@ -301,30 +333,26 @@
     function calculateAndDisplayRoute(directionsService, directionsRenderer, awal, tujuan) {
         // var start = document.getElementById("start").value;
         // var end = document.getElementById("end").value;
+        var start = new google.maps.LatLng(awal.long, awal.lat);
+        var end = new google.maps.LatLng(tujuan.lat, tujuan.lng);
         var request = {
-            origin: new google.maps.LatLng(awal.lng, awal.lat),
-            destination: new google.maps.LatLng(tujuan.lng, tujuan.lat),
-            travelMode: google.maps.TravelMode.DRIVING
+            origin: start, // Haight.
+            destination: end, // Ocean Beach.
+            // Note that Javascript allows us to access the constant
+            // using square brackets and a string value as its
+            // "property."
+            travelMode: google.maps.DirectionsTravelMode.DRIVING,
+             unitSystem: google.maps.UnitSystem.IMPERIAL
         };
-        layananarah.route(request, function (result, status) {
-            if (status === google.maps.DirectionsStatus.OK) {
-                tampilarah.setDirections(result);
+        directionsService.route(request, function(response, status) {
+            if (status == 'OK') {
+                directionsRenderer.setDirections(response);
+            }else{
+                window.alert("Directions request failed due to " + status);
             }
+        },err=>{
+
         });
-        directionsService.route(
-            {
-                origin: new google.maps.LatLng(awal.lng, awal.lat),
-                destination: new google.maps.LatLng(tujuan.lng, tujuan.lat),
-                travelMode: "DRIVING"
-            },
-            function (response, status) {
-                if (status === "OK") {
-                    directionsRenderer.setDirections(response);
-                } else {
-                    window.alert("Directions request failed due to " + status);
-                }
-            }
-        );
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -334,21 +362,18 @@
             'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
     }
-    //membersihkan peta dari marker
     function clearmap(e) {
         e.preventDefault();
         $('#latitude').val('');
         $('#longitude').val('');
         setMapOnAll(null);
     }
-    //buat hapus marker
     function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(map);
         }
         markers = [];
     }
-    //end buat hapus marker
 
     function simpandaftarkoordinatjembatan(e) {
         e.preventDefault();
@@ -425,7 +450,4 @@
         });
         markers.push(marker);
     }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-
 </script>

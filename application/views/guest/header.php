@@ -7,7 +7,9 @@
   <title><?= $title?></title>
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
+  <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -21,8 +23,8 @@
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav navbar-right">
           <li role="presentation"><a href="<?= base_url()?>home">Home</a></li>
-          <li role="presentation"><a href="#news">Event</a></li>
-          <li role="presentation"><a href="#gallery">Wisata</a></li>
+          <li role="presentation"><a href="<?= base_url()?>guest/event">Event</a></li>
+          <li role="presentation"><a href="<?= base_url()?>guest/wisata">Wisata</a></li>
           <li role="presentation"><a href="#about">About</a></li>
           <li role="presentation"><a href="<?= base_url()?>auth">Login</a></li>
           <!-- <li role="presentation"><a href="#"><i class="glyphicon glyphicon-search"></i></a></li> -->

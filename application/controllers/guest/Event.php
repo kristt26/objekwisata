@@ -10,6 +10,15 @@ class Event extends CI_Controller
         $this->load->model("admin/Event_model", "EventModel");
     }
 
+    function index()
+    {
+        $Title = ['title'=>"Event Wisata"];
+        $data['event'] = $this->EventModel->eventonly();
+        $this->load->view('guest/header', $Title);
+        $this->load->view('guest/event', $data);
+        $this->load->view('guest/footer');
+    }
+
     function readevent($id)
     {
         $Title = ['title'=>"Event Wisata"];

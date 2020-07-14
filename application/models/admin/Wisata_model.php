@@ -1,6 +1,13 @@
 <?php
 class Wisata_model extends CI_Model
 {
+    private $db2 = NULL;
+	function __construct(){
+		parent::__construct();
+		// $this->load->model('pemasukan_model');
+		$this->db2 = $this->load->database('db2', true);
+    }
+    
     public function select()
     {
         $result = $this->db->get('kategori_wisata');
@@ -19,10 +26,32 @@ class Wisata_model extends CI_Model
         return $datawisata['wisata'];
     }
 
+    function testing(){
+        $query = $this->db2->get('jembatan');//mengambil semua data jembatan
+		return $query;
+    }
+
+    function testing2()
+    {
+        $query = $this->db2->get('koordinatjembatan');//mengambil semua data koordinat jembatan
+		return $query;
+    }
+    
+
     public function selectbyid($id)
     {
         $resultwisata = $this->db->get_where('wisata', array('idkategori_wisata' => $id['id']));
         return $resultwisata->result();
+    }
+
+    function wisataonly()
+    {
+        // $data['wisata']=array();
+        $wisata = $this->db->query("SELECT
+            *
+        FROM
+            `wisata`");
+        return $wisata->result();
     }
 
     public function selectone($id)

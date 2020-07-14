@@ -7,6 +7,8 @@ class Google_login extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Google_login_model");
+        $this->load->model('User_model');
+        
     }
 
     public function login()
@@ -28,38 +30,26 @@ class Google_login extends CI_Controller
                 $data = $google_service->userinfo->get();
                 $current_datetime = date('Y-m-d H:i:s');
                 if($this->Google_login_model->Is_already_register($data['id'])){
-                    $user_data = array(
-                        'first_name' => $data['given_name'],
-                        'last_name' => $data['family_name'],
-                        'email' => $data['email'],
-                        'picture' => $data['picture'],
-                        'gender' => $data['gender'],
-                        'modified' => $current_datetime,
-                    );
-                    $this->Google_login_model->Update_user_data($user_data, $data['id']);
+                    $output = $this->Google_login_model->get($data['id']);
+                    $this->session->set_userdata('user_data', $output);
                 }else{
                     $user_data = array(
                         'oauth_uid' => $data['id'],
-                        'first_name' => $data['given_name'],
-                        'last_name' => $data['family_name'],
+                        'nama' => $data['name'],
                         'email' => $data['email'],
                         'picture' => $data['picture'],
-                        'gender' => $data['gender'],
+                        'jk' => $data['gender'],
                         'created' => $current_datetime,
                     );
-                    $this->Google_login_model->Insert_user_data($user_data);
+                    $this->User_model->register($user_data);
+                    $output = $this->Google_login_model->get($data['id']);
+                    $this->session->set_userdata('user_data', $output);
                 }
                 $this->session->set_userdata('user_data', $user_data);
-                redirect('welcome');
+                redirect('home');
             }
             
         }
-        // if(!$this->session->userdata('access_token')){
-        //     $login_button = '<a href="'.$google_client->createAuthUrl().'"><img src ="'.base_url().'asset/sign-in-with-google.png"/></a>';
-        // }
-        // $data['login_button'] = $login_button;
-        // $this->load->view('register',$data);
-        // $this->load->view('welcome_message');
     }
     public function logout()
     {
