@@ -19,16 +19,22 @@ class Wisata extends CI_Controller
         $this->load->view('guest/footer');
     }
 
-    function readwisata($id)
+    function readwisata($id=null)
     {
         $Title = ['title'=>"Event Wisata"];
-        $data['wisata'] = $this->WisataModel->selectone($id)[0];
         // $data = array('content' => 'admin/koordinatjembatanform',
 		// 	'itemdatajembatan'=>$this->WisataModel->testing(),
 		// 	'itemkoordinatjembatan'=>$this->WisataModel->testing2());
         $this->load->view('guest/header', $Title);
-        $this->load->view('guest/readwisata', $data);
+        $this->load->view('guest/readwisata');
         $this->load->view('guest/footer');
+    }
+
+    public function getData($id=null)
+    {
+        $data['user'] = $this->session->userdata('user_data');
+        $data['wisata'] = $this->WisataModel->selectone($id)[0];
+        echo json_encode($data);
     }
     
 }

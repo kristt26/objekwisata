@@ -21,6 +21,8 @@ class Auth extends CI_Controller
     }
     public function logout()
     {
+        include_once APPPATH . 'libraries/vendor/autoload.php';
+        $this->google->revokeToken(); 
         $this->session->unset_userdata('access_token');
         $this->session->unset_userdata('user_data');
         $this->session->unset_userdata('authenticated');

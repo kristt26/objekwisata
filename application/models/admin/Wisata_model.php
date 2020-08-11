@@ -56,8 +56,10 @@ class Wisata_model extends CI_Model
 
     public function selectone($id)
     {
-        $resultwisata = $this->db->get_where('wisata', array('idwisata' => $id));
-        return $resultwisata->result();
+        $resultwisata = $this->db->get_where('wisata', array('idwisata' => $id))->result();
+        $result = $this->db->get_where('marking', array('idwisata'=>$id))->result();
+        $resultwisata[0]->marker = $result;
+        return $resultwisata;
     }
 
     public function insert($data)

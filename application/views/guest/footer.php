@@ -13,8 +13,17 @@
     </div>
 </div>
   <!-- kaki -->
+  <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+  <script src="<?php echo base_url();?>assets/bower_components/angular/angular.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/apps.js"></script>
+  <script src="<?php echo base_url();?>assets/js/controller/controller.js"></script>
+  <script src="<?php echo base_url();?>assets/js/helper.services.js"></script>
+  <script src="<?php echo base_url();?>assets/js/userdata.service.js"></script>
+  <script src="<?php echo base_url();?>assets/bower_components/ngmap/build/scripts/ng-map.js"></script>
+  <!-- <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script> -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   
-  <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+  
 </body>
 
 </html>

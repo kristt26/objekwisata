@@ -1,112 +1,57 @@
-<div class="data-center" data-lat="<?= $wisata->lat?>" data-long="<?= $wisata->long?>" data-city="Papua"
-    data-keterangan="<?= $wisata->keterangan?>" data-nama="<?= $wisata->nama?>" data-idwisata="<?= $wisata->idwisata?>"></div>
-<div id="top">
-    <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h1><?= $wisata->nama;?></h1>
-                <div class="tombol">
-                    <h5 style="margin-right:20px;"><i class="fa fa-user"></i>&nbsp;&nbsp;ADMIN</h5>
-                    <!-- <h5><i class="fa fa-calendar"></i>&nbsp;&nbsp;<?= $wisata->tgl_posting;?></h5> -->
-                </div>
-                <div class="row">
-                    <img src="<?= base_url().'assets/img/wisata/foto/'.$wisata->foto?>" width="100%" height="500px"
-                        alt="">
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h3 class="page-header">
-                            Description
-                        </h3>
+<div ng-app="app" ng-controller="readwisataController" ng-init="Init()">
+    <div id="top">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 style="margin-bottom: 25px; text-align: center;">{{datas.wisata.nama | uppercase}}</h1>
+                    <div class="row">
+                        <img src="{{url}}/assets/img/wisata/foto/{{datas.wisata.foto}}" width="100%" height="500px"
+                            alt="">
                     </div>
-                    <!-- /.col -->
-                </div>
-                <div class="text-justify">
-                    <?= $wisata->keterangan;?>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="page-header">
+                                Description
+                            </h3>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="text-justify">
+                        {{datas.wisata.keterangan}}
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
 
-                        <h3 class="page-header">
-                            Maps
-                        </h3>
-
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                            <h3 class="page-header">
+                                Maps
+                            </h3>
+                            <div class="panel panel-default">
                                 <div class="row">
-                                    <div class="panel-body" style="margin-bottom:-30px !important">
-                                        <div class="tombol">
-                                            <a href="#tab_1" data-toggle="tab" style="width: 50%;">
-                                                <div class="info-box">
-                                                    <span class="info-box-icon bg-marker"><i
-                                                            class="fa fa-map-marker"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">Marker</span>
-                                                    </div>
-                                                    <!-- /.info-box-content -->
-                                                </div>
-                                                <!-- /.info-box -->
-                                            </a>
-                                            <a href="#tab_2" data-toggle="tab" style="width: 50%;">
-                                                <div class="info-box">
-                                                    <span class="info-box-icon bg-marker"><i
-                                                            class="fa fa-map-marker"></i></span>
-
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">Street</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
+                                    <div class="col-xs-8">
+                                        <ng-map zoom="13" scrollwheel="true" default-style="false" style="height: 500px"
+                                            zoom-to-include-markers="false" center="{{lat}},{{long}}"
+                                            on-rightclick="addMarker()" default-style="true">
+                                            <marker position="[{{lat}},{{long}}]"
+                                                icon="https://img.icons8.com/ultraviolet/40/000000/marker.png"
+                                                on-click="detail(event)">
+                                            </marker>
+                                            <marker position="[{{curentlat}},{{curentlong}}]"
+                                                icon="https://img.icons8.com/ultraviolet/40/000000/location-off.png"
+                                                on-click="detail(event)">
+                                            </marker>
+                                            <directions
+                                                    draggable="true"
+                                                    panel=directions-panel
+                                                    travel-mode="DRIVING"
+                                                    origin="{{curentlat}},{{curentlong}}"
+                                                    destination="{{lat}},{{long}}">
+                                            </directions>
+                                        </ng-map>
                                     </div>
-
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="tab_1">
-                                            <div class="panel-body">
-                                                <div class="col-md-12 col-sm-12 col-xs-12" style="height:400px;"
-                                                    id="map-canvas"></div>
-                                            </div>
-                                            <div class="panel-body">
-                                                <div style="min-height:400px;;">
-                                                    <table class="table table-bordered table-hover">
-                                                        <th>No</th>
-                                                        <th>Data jembatan</th>
-                                                        <th>Latitude</th>
-                                                        <th>Longitude</th>
-                                                        <th></th>
-                                                        <tbody id="daftarkoordinatjembatan">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.tab-pane -->
-                                        <div class="tab-pane" id="tab_2">
-                                            <div class="tab-pane active" id="tab_1">
-                                                <div class="panel-body">
-                                                    The European languages are members of the same family. Their
-                                                    separate
-                                                    existence is a myth.
-                                                    For science, music, sport, etc, Europe uses the same vocabulary. The
-                                                    languages only differ
-                                                    in their grammar, their pronunciation and their most common words.
-                                                    Everyone
-                                                    realizes why a
-                                                    new common language would be desirable: one could refuse to pay
-                                                    expensive
-                                                    translators. To
-                                                    achieve this, it would be necessary to have uniform grammar,
-                                                    pronunciation
-                                                    and more common
-                                                    words. If several languages coalesce, the grammar of the resulting
-                                                    language
-                                                    is more simple
-                                                    and regular than that of the individual languages.
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div>
+                                    <div id="directions-panel" class="col-xs-4"></div>
                                     </div>
-                                    <!-- /.tab-content -->
+                                    
                                 </div>
 
                             </div>
@@ -116,57 +61,59 @@
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="tambah-data">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Ubah Kategori Wisata</h4>
-            </div>
-            <div class="modal-body">
-                <form action="<?= base_url();?>marker/simpan/<?= $wisata->idwisata;?>" method="post"
-                    enctype="multipart/form-data">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="nama">Longitude</label>
-                            <input type="hidden" name="idwisata" class="form-control idwisata" id="idwisata">
-                            <input type="text" name="long" class="form-control long" id="long" required>
+    <div class="modal fade" id="tambah-data">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ubah Kategori Wisata</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url();?>marker/simpan/<?= $wisata->idwisata;?>" method="post"
+                        enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="nama">Longitude</label>
+                                <input type="hidden" name="idwisata" class="form-control idwisata" id="idwisata">
+                                <input type="text" name="long" class="form-control long" id="long" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="nama">Latitude</label>
-                            <input type="text" name="lat" class="form-control lat" id="lat" required>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="nama">Latitude</label>
+                                <input type="text" name="lat" class="form-control lat" id="lat" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="nama">Lokasi</label>
-                            <input type="text" name="city" class="form-control city" id="city" required>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="nama">Lokasi</label>
+                                <input type="text" name="city" class="form-control city" id="city" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="nama">Keterangan</label>
-                            <input type="text" name="desc" class="form-control desc" id="desc" required>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="nama">Keterangan</label>
+                                <input type="text" name="desc" class="form-control desc" id="desc" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" id="batal"
-                            data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" id="batal"
+                                data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
 
+            </div>
         </div>
     </div>
 </div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaXpkAhOkqROHQ_eKi1z6M2o2RsR1QDIk&callback=initialize"
-  type="text/javascript"></script>
-<script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByGhiEjG2rcKsVqYXwJOtUugy0BS55_lo"></script>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByGhiEjG2rcKsVqYXwJOtUugy0BS55_lo" type="text/javascript"></script> -->
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js" type="text/javascript"></script> -->
+<!-- <script>
     idwisata = $('.data-center').data('idwisata');
     nama = $('.data-center').data('nama');
     var itemmark = [];
@@ -195,13 +142,11 @@
             zoom: 14,
             center: new google.maps.LatLng(longc - 0.000009, latc - 0.000007)
         };
-        // addMarker(itemmark);
 
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         initMarker(itemmark);
         currentPossition();
         showMarker();
-        // Add a listener for the click event
         google.maps.event.addListener(map, 'dblclick', addLatLng);
         google.maps.event.addListener(map, "dblclick", function (event) {
             var lat = event.latLng.lat();
@@ -211,7 +156,6 @@
             $('.long').val(long);
             $('.idwisata').val(idwisata);
             $('#tambah-data').modal('show');
-            //alert(lat +" dan "+lng);
         });
     }
 
@@ -241,12 +185,6 @@
         };
         initMarker(itemmarking);
     }
-
-	/**
-	 * Handles click events on a map, and adds a new point to the marker.
-	 * @param {google.maps.MouseEvent} event
-     
-	 */
     function addLatLng(event) {
         var marker = new google.maps.Marker({
             position: event.latLng,
@@ -262,10 +200,6 @@
             title: event.nama
         });
         var contentString = '<h2>' + marker.title + '</h2>' + '<div class="infoWindowContent">' + event.keterangan + '</div>';
-
-        // var infowindow = new google.maps.InfoWindow({
-        //     content: '<h2>' + marker.title + '</h2>' + marker.content;
-        // });
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
@@ -274,15 +208,7 @@
             infowindow.open(map, marker);
             var tujuan = { 'lat': event.lat, 'lng': event.long };
             var hitungjarak = jarak(pos, tujuan)
-
-            // $('#tambah-data').modal('show');
-
         });
-
-        // marker.addListener('click', function () {
-        //     infowindow.open(map, marker);
-        // });
-
         markers.push(marker);
 
     }
@@ -296,16 +222,10 @@
                     lat: position.coords.latitude,
                     long: position.coords.longitude
                 };
-
-                // infoWindow1.setPosition(pos);
-                // infoWindow1.setContent('Location found.');
-                // infoWindow1.open(map);
-                // map.setCenter(pos);
             }, function () {
                 handleLocationError(true, infoWindow1, map.getCenter());
             });
         } else {
-            // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow1, map.getCenter());
         }
     }
@@ -316,31 +236,15 @@
 
         directionsRenderer.setMap(map);
         directionsRenderer.setPanel(document.getElementById("right-panel"));
-
-        // var control = document.getElementById("floating-panel");
-        // control.style.display = "block";
-        // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
         calculateAndDisplayRoute(directionsService, directionsRenderer, awal, tujuan);
-
-        // var onChangeHandler = function() {
-
-        // };
-        // document.getElementById("start").addEventListener("change", onChangeHandler);
-        // document.getElementById("end").addEventListener("change", onChangeHandler);
-
     }
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer, awal, tujuan) {
-        // var start = document.getElementById("start").value;
-        // var end = document.getElementById("end").value;
         var start = new google.maps.LatLng(awal.long, awal.lat);
         var end = new google.maps.LatLng(tujuan.lat, tujuan.lng);
         var request = {
-            origin: start, // Haight.
-            destination: end, // Ocean Beach.
-            // Note that Javascript allows us to access the constant
-            // using square brackets and a string value as its
-            // "property."
+            origin: start, 
+            destination: end, 
             travelMode: google.maps.DirectionsTravelMode.DRIVING,
              unitSystem: google.maps.UnitSystem.IMPERIAL
         };
@@ -425,7 +329,6 @@
             success: function (data, status) {
                 if (data.status != 'error') {
                     clearmap(e);
-                    //load marker
                     $.each(data.msg, function (m, n) {
                         var myLatLng = { lat: parseFloat(n["latitude"]), lng: parseFloat(n["longitude"]) };
                         console.log(m, n);
@@ -434,14 +337,12 @@
                         })
                         return false;
                     })
-                    //end load marker
                 } else {
                     alert(data.msg);
                 }
             }
         })
     }
-    // Menampilkan marker lokasi jembatan
     function addMarker(nama, location) {
         var marker = new google.maps.Marker({
             position: location,
@@ -450,4 +351,4 @@
         });
         markers.push(marker);
     }
-</script>
+</script> -->

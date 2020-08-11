@@ -8,8 +8,12 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
-  <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+
+
+
+
 </head>
 
 <body>
@@ -26,8 +30,11 @@
           <li role="presentation"><a href="<?= base_url()?>guest/event">Event</a></li>
           <li role="presentation"><a href="<?= base_url()?>guest/wisata">Wisata</a></li>
           <li role="presentation"><a href="#about">About</a></li>
-          <li role="presentation"><a href="<?= base_url()?>auth">Login</a></li>
-          <!-- <li role="presentation"><a href="#"><i class="glyphicon glyphicon-search"></i></a></li> -->
+          <?php if($a = $this->session->userdata('user_data')){?>
+            <li role="presentation"><a href="<?= base_url()?>auth/logout">Logout</a></li>
+          <?php }else{ ?>
+            <li role="presentation"><a href="<?= base_url()?>auth">Login</a></li>
+          <?php }?>
         </ul>
       </div>
     </div>

@@ -15,8 +15,8 @@ class Google_login extends CI_Controller
     {
         include_once APPPATH . 'libraries/vendor/autoload.php';
         $google_client = new Google_Client();
-        $google_client->setClientId('996822708677-l4cf5n1m439imknnbsjrsv7ktn5h4vk0.apps.googleusercontent.com');
-        $google_client->setClientSecret('UXQAVCmrvR-ePEz35fVFkJxf');
+        $google_client->setClientId('981383344271-44t68jekt07rb2noc7l698egdem74gvv.apps.googleusercontent.com');
+        $google_client->setClientSecret('4SXgqoWow6Et9tQ7deEi2Ia1');
         $google_client->setRedirectUri('http://localhost/objekwisata/google_login/login');
         $google_client->addScope('email');
         $google_client->addScope('profile');
@@ -31,7 +31,7 @@ class Google_login extends CI_Controller
                 $current_datetime = date('Y-m-d H:i:s');
                 if($this->Google_login_model->Is_already_register($data['id'])){
                     $output = $this->Google_login_model->get($data['id']);
-                    $this->session->set_userdata('user_data', $output);
+                    $this->session->set_userdata('user_data', $output[0]);
                 }else{
                     $user_data = array(
                         'oauth_uid' => $data['id'],
@@ -45,7 +45,7 @@ class Google_login extends CI_Controller
                     $output = $this->Google_login_model->get($data['id']);
                     $this->session->set_userdata('user_data', $output);
                 }
-                $this->session->set_userdata('user_data', $user_data);
+                // $this->session->set_userdata('user_data', $user_data);
                 redirect('home');
             }
             
