@@ -53,6 +53,7 @@ class Google_login extends CI_Controller
     }
     public function logout()
     {
+       
         $this->session->unset_userdata('access_token');
         $this->session->unset_userdata('user_data');
         redirect('login');

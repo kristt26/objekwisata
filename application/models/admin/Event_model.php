@@ -30,6 +30,15 @@ class Event_model extends CI_Model
         $resultevent = $this->db->get_where('event', array('idevent' => $id));
         return $resultevent->result();   
     }
+    public function selectevent()
+    {
+        return $this->db->query("SELECT
+            `event`.*,
+            `wisata`.`nama` AS `namawisata`
+        FROM
+            `event`
+            LEFT JOIN `wisata` ON `wisata`.`idwisata` = `event`.`idwisata`")->result();
+    }
     function insert($data)
     {
         if (($a = $this->do_upload()) != false) {
@@ -46,7 +55,6 @@ class Event_model extends CI_Model
     function update($data)
     {
         if (($a = $this->do_upload()) != false) {
-            $text = strip_tags($data['isi']);
             $item = [
                 'nama' => $data['nama'],
                 'alamat' => $data['alamat'],
@@ -54,14 +62,26 @@ class Event_model extends CI_Model
                 'tgl_mulai' => $data['tgl_mulai'],
                 'tgl_selesai' => $data['tgl_selesai'],
                 'tgl_posting' => $data['tgl_posting'],
-                'stringtext' => substr($text,0,255),
+                'stringtext' => $data['isi'],
                 'foto' => $a['file_name']
             ];
             $this->db->where('idevent', $data['idevent']);
             $result =  $this->db->update('event', $item);
             return $result;
         }else{
-            return false;
+            $item = [
+                'nama' => $data['nama'],
+                'alamat' => $data['alamat'],
+                'isi' => $data['isi'],
+                'tgl_mulai' => $data['tgl_mulai'],
+                'tgl_selesai' => $data['tgl_selesai'],
+                'tgl_posting' => $data['tgl_posting'],
+                'stringtext' => $data['isi'],
+            ];
+            $this->db->where('idevent', $data['idevent']);
+            $result =  $this->db->update('event', $item);
+            return $result;
+            return $result;
         }
         
 

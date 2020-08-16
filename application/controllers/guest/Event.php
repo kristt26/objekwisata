@@ -28,5 +28,19 @@ class Event extends CI_Controller
         $this->load->view('guest/footer');
 
     }
+
+    public function getData($id=null)
+    {
+        $data['user'] = $this->session->userdata('user_data');
+        $data['event'] = $this->EventModel->selectone($id)[0];
+        echo json_encode($data);
+    }
+
+    public function getDataEvent()
+    {
+        $data['user'] = $this->session->userdata('user_data');
+        $data['event'] = $this->EventModel->selectevent();
+        echo json_encode($data);
+    }
     
 }

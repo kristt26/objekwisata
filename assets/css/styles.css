@@ -134,7 +134,8 @@ i.glyphicon.glyphicon-search{
   /* margin-top: 31px; */
   background-color: #f9f8f8;
   /* padding-top: 43px; */
-  padding-bottom: 25px;
+  text-align: center;
+  font-family: raleway;
 }
 
 #gallery .container h1{
@@ -332,6 +333,16 @@ i.glyphicon.glyphicon-search{
   border: 1px solid #ccc;
   box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
   display: none;
+}
+#imgwindowinfo{
+  width: 100%;
+}
+#bodyContent{
+  width: 350px !important;
+}
+#bukutamu{
+  padding-left: 300px;
+  padding-right: 300px;
 }
 
 

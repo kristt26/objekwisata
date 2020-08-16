@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/font-awesome/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="<?=base_url();?>assets/plugins/fontawesome-free/css/all.min.css">
+
   <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
 
 
@@ -29,7 +31,7 @@
           <li role="presentation"><a href="<?= base_url()?>home">Home</a></li>
           <li role="presentation"><a href="<?= base_url()?>guest/event">Event</a></li>
           <li role="presentation"><a href="<?= base_url()?>guest/wisata">Wisata</a></li>
-          <li role="presentation"><a href="#about">About</a></li>
+          <li role="presentation"><a href="<?= base_url()?>guest/bukutamu">Buku Tamu</a></li>
           <?php if($a = $this->session->userdata('user_data')){?>
             <li role="presentation"><a href="<?= base_url()?>auth/logout">Logout</a></li>
           <?php }else{ ?>

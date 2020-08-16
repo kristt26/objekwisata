@@ -16,10 +16,14 @@ class Event extends CI_Controller
     public function index()
     {
         $Title = ['title'=>"Event Wisata", 'titledash'=>"Event"];
-		$data['model'] = $this->EventModel->select();
         $this->load->view('template/header', $Title);
-        $this->load->view('admin/event', $data);
+        $this->load->view('admin/event');
         $this->load->view('template/footer');
+    }
+    public function getdata()
+    {
+        $data['event'] = $this->EventModel->select();
+        echo json_encode($data);
     }
     function add($idwisata= null)
     {

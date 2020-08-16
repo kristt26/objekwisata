@@ -1,11 +1,5 @@
-<div class="row">
+<div class="row" ng-app="app" ng-controller="addeventController">
     <div class="data-flush" data-flash="<?= $this->session->flashdata('pesan');?>"></div>
-<!-- <?php if ($this->session->flashdata('pesan')): ?>
-                    <div class="alert alert-warning alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <?= $this->session->flashdata('pesan');?>
-                    </div>
-                    <?php endif;?> -->
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -56,7 +50,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Isi Event</label>
-                                    <textarea id="editor1" type="text" name="isi" class="form-control" id="keterangan" placeholder="keterangan" required><?= $isi = $wisata->jenis==='event'? $wisata->isi : '';?></textarea>
+                                    <textarea id="editor1" type="text" name="isi" class="form-control" placeholder="keterangan" required><?= $isi = $wisata->jenis==='event'? $wisata->isi : '';?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
@@ -131,5 +125,14 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1')
+        //bootstrap WYSIHTML5 - text editor
+        // $('.textarea').wysihtml5()
+    })
+</script>
 
 

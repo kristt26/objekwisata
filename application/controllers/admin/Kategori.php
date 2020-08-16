@@ -17,45 +17,34 @@ class Kategori extends CI_Controller
     public function index()
     {
         $Title = ['title'=>"Kategori Wisata", 'titledash'=>"Kategori Wisata"];
-		$data['kategori'] = $this->KategoriModel->select();
+		
         $this->load->view('template/header', $Title);
-        $this->load->view('admin/kategori', $data);
+        $this->load->view('admin/kategori');
         $this->load->view('template/footer');
+    }
+
+    public function getdata()
+    {
+        $data['kategori'] = $this->KategoriModel->select();
+        echo json_encode($data['kategori']);
     }
 
     public function tambah()
     {
-        $this->form_validation->set_rules('nama', 'Kategori Wisata', 'required', 'required');
-        $data = $this->input->post();
-        if ($this->form_validation->run() == false) {
-            $this->load->view('template/header');
-			$this->load->view('admin/kategori');
-			$this->load->view('template/footer');
-        } else {
-			$output = $this->KategoriModel->insert($data);
-			$this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, success');
-			redirect('admin/kategori');
-        }
-        
+        $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
+        $output = $this->KategoriModel->insert($data);
+        echo json_encode($output);
 	}
 	public function ubah()
     {
-        $data = $this->input->post();
+        $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
         $output = $this->KategoriModel->update($data);
-        if ($output) {
-            $this->session->set_flashdata('pesan', 'Berhasil di Ubah, success');
-            redirect('admin/kategori');
-        }else{
-            $this->session->set_flashdata('pesan', 'Gagal di Ubah, error');
-            redirect('admin/kategori');
-        }
+        echo json_encode($output);
 	}
-	public function hapus()
+	public function hapus($id = null)
     {
         $data = $this->input->post();
 		$output = $this->KategoriModel->delete($data);
-		$this->session->set_flashdata('pesan', 'Berhasil, di Ubah');
-		redirect('admin/kategori');
-        
+        echo json_encode($output);
     }
 }

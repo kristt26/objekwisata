@@ -13,12 +13,17 @@ class Home extends CI_Controller {
 	
 	public function index()
 	{
-		$data['event'] = $this->EventModel->eventonly();
-		$data['kategori'] = $this->KategoriModel->select();
-		$data['wisata'] = $this->WisataModel->select();
 		$Title = ['title'=>"Home", 'titledash'=>"Dashboard"];
 		$this->load->view('guest/header', $Title);
-		$this->load->view('homedesk', $data);
+		$this->load->view('homedesk');
 		$this->load->view('guest/footer');
+	}
+	
+	public function getdata()
+	{
+		$data['event'] = $this->EventModel->eventonly();
+		$data['kategori'] = $this->KategoriModel->select();
+		$data['wisata'] = $this->WisataModel->selecthome();
+		echo json_encode($data);
 	}
 }

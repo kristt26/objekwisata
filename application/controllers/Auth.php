@@ -22,7 +22,12 @@ class Auth extends CI_Controller
     public function logout()
     {
         include_once APPPATH . 'libraries/vendor/autoload.php';
-        $this->google->revokeToken(); 
+        $google_client = new Google_Client();
+        $google_client->setClientId('981383344271-44t68jekt07rb2noc7l698egdem74gvv.apps.googleusercontent.com');
+        $google_client->setClientSecret('4SXgqoWow6Et9tQ7deEi2Ia1');
+        $google_client->setRedirectUri('http://localhost/objekwisata/google_login/login');
+        $google_client->revokeToken(); 
+        
         $this->session->unset_userdata('access_token');
         $this->session->unset_userdata('user_data');
         $this->session->unset_userdata('authenticated');
@@ -40,8 +45,13 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('pesan', $output['message'].', error');
             $this->load->view('login', $data);
         }else{
-            $this->session->set_userdata('user_data', $output);
-            redirect('welcome');
+            $this->session->set_userdata('user_data', $output[0]);
+            if($output[0]->jenis=='admin'){
+                redirect('admin/home');
+            }else{
+                redirect('home');
+            }
+            
         }
 
     }

@@ -29,6 +29,7 @@
     "less": "^3"
   },
   "dependencies": {
+    "angular-datatables": "^0.6.2",
     "bootstrap": "^3.4",
     "bootstrap-colorpicker": "^2.5.3",
     "bootstrap-datepicker": "^1.8",
