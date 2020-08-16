@@ -195,6 +195,8 @@ class GoogleMap {
             }, function (err) {
                 // var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
                 setMaker1(window.googleMap.map.getCenter(), "Your Position", "https://www.robotwoods.com/dev/misc/bluecircle.png");
+                alert('Browser anda tidak mengijinkan mengakses lokasi anda karena sumber tidak terpercaya');
+
                 // var infoWindow =new google.maps.InfoWindow({
                 //     content: "Your location"
                 //   });
@@ -203,6 +205,7 @@ class GoogleMap {
         } else {
             // Browser doesn't support Geolocation
             window.googleMap.handleLocationError(false, infoWindow, this.googleMap.map.getCenter());
+            alert('Browser anda tidak mengijinkan mengakses lokasi anda karena sumber tidak terpercaya');
         }
     }
 
