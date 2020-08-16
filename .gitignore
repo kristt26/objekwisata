@@ -30,5 +30,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 assets/bower_components/*
-assets/node_modules/*
+# assets/node_modules/*
 .htaccess
