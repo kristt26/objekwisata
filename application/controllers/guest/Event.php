@@ -22,7 +22,7 @@ class Event extends CI_Controller
     function readevent($id)
     {
         $Title = ['title'=>"Event Wisata"];
-        $data['event'] = $this->EventModel->selectone($id)[0];
+        $data['event'] = $this->EventModel->selectone($id);
         $this->load->view('guest/header', $Title);
         $this->load->view('guest/readevent', $data);
         $this->load->view('guest/footer');

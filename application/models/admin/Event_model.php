@@ -27,8 +27,8 @@ class Event_model extends CI_Model
     }
     public function selectone($id)
     {
-        $resultevent = $this->db->get_where('event', array('idevent' => $id));
-        return $resultevent->result();   
+        $resultevent = $this->db->get_where('event', array('idevent' => $id))->result()[0];
+        return $resultevent;   
     }
     public function selectevent()
     {
@@ -44,7 +44,7 @@ class Event_model extends CI_Model
         if (($a = $this->do_upload()) != false) {
             $data['foto'] = $a['file_name'];
             $text = strip_tags($data['isi']);
-            $data['stringtext'] = substr($text,0,255);
+            $data['stringtext'] = substr($text,0,120);
             $result = $this->db->insert('event', $data);
             return $result;
         }else{

@@ -64,12 +64,17 @@ class Wisata_model extends CI_Model
                 LEFT JOIN `member` ON `member`.`iduser` = `user`.`iduser`
                 LEFT JOIN `admin` ON `admin`.`iduser` = `user`.`iduser`
             WHERE marking.status='true'");
-            return $resultwisata->result();
+        return $resultwisata->result();
     }
 
     public function selectfoto($idwisata)
     {
         $result = $this->db->get_where('kategori_wisata', ['idwisata' => $idwisata])->row();
+        return $result;
+    }
+    public function selectfotowisata($idwisata)
+    {
+        $result = $this->db->get_where('wisata', ['idwisata' => $idwisata])->row();
         return $result;
     }
 
@@ -132,14 +137,6 @@ class Wisata_model extends CI_Model
     public function selectwisata()
     {
         $user = $this->session->userdata('user_data');
-        $string;
-        if($user!=null){
-            $string="AND (user.iduser='$user->iduser' OR user.jenis='admin')";
-        }else{
-            $string="";
-        }
-
-        
         $resultwisata = $this->db->query("SELECT
             `wisata`.*,
             `marking`.`long`,
@@ -161,7 +158,7 @@ class Wisata_model extends CI_Model
             LEFT JOIN `admin` ON `admin`.`iduser` = `user`.`iduser`
             LEFT JOIN `kategori_wisata` ON `kategori_wisata`.`idkategori_wisata` =
             `wisata`.`idkategori_wisata`
-            WHERE marking.status!='false' $string")->result();
+            WHERE user.iduser='$user->iduser' OR user.jenis='admin' OR marking.status='true'")->result();
         return $resultwisata;
     }
 
@@ -170,27 +167,27 @@ class Wisata_model extends CI_Model
         $created = date('Y-m-d');
         $iduser = $this->session->userdata('user_data')->iduser;
         $this->db->trans_begin();
-        $datawisata=[
-            'nama'=>$data['nama'],
-            'alamat'=>$data['alamat'],
-            'keterangan'=>$data['keterangan'],
-            'biayaparkir'=>$data['biayaparkir'],
-            'biayapondok'=>$data['biayapondok'],
-            'idkategori_wisata'=>$data['idkategori_wisata'],
-            'foto'=>$data['foto']
+        $datawisata = [
+            'nama' => $data['nama'],
+            'alamat' => $data['alamat'],
+            'keterangan' => $data['keterangan'],
+            'biayaparkir' => $data['biayaparkir'],
+            'biayapondok' => $data['biayapondok'],
+            'idkategori_wisata' => $data['idkategori_wisata'],
+            'foto' => $data['foto'],
         ];
         $result = $this->db->insert('wisata', $datawisata);
         $datakordinat = [
-            'long'=>$data['long'],
-            'lat'=>$data['lat'],
-            'created'=>$created,
-            'modifier'=>$data['modifier'],
-            'idwisata'=>$this->db->insert_id(),
-            'iduser'=>$iduser,
-            'status'=>'true'
+            'long' => $data['long'],
+            'lat' => $data['lat'],
+            'created' => $created,
+            'modifier' => $data['modifier'],
+            'idwisata' => $this->db->insert_id(),
+            'iduser' => $iduser,
+            'status' => 'true',
         ];
         $result = $this->db->insert('marking', $datakordinat);
-        if ($this->db->trans_status()==true) {
+        if ($this->db->trans_status() == true) {
             $this->db->trans_commit();
             return true;
         } else {
@@ -204,27 +201,27 @@ class Wisata_model extends CI_Model
         $created = date('Y-m-d');
         $iduser = $this->session->userdata('user_data')->iduser;
         $this->db->trans_begin();
-        $datawisata=[
-            'nama'=>$data['nama'],
-            'alamat'=>$data['alamat'],
-            'keterangan'=>$data['keterangan'],
-            'biayaparkir'=>$data['biayaparkir'],
-            'biayapondok'=>$data['biayapondok'],
-            'idkategori_wisata'=>$data['idkategori_wisata'],
-            'foto'=>$data['foto']
+        $datawisata = [
+            'nama' => $data['nama'],
+            'alamat' => $data['alamat'],
+            'keterangan' => $data['keterangan'],
+            'biayaparkir' => $data['biayaparkir'],
+            'biayapondok' => $data['biayapondok'],
+            'idkategori_wisata' => $data['idkategori_wisata'],
+            'foto' => $data['foto'],
         ];
         $result = $this->db->insert('wisata', $datawisata);
         $datakordinat = [
-            'long'=>$data['long'],
-            'lat'=>$data['lat'],
-            'created'=>$created,
-            'modifier'=>$data['modifier'],
-            'idwisata'=>$this->db->insert_id(),
-            'iduser'=>$iduser,
-            'status'=>'false'
+            'long' => $data['long'],
+            'lat' => $data['lat'],
+            'created' => $created,
+            'modifier' => $data['modifier'],
+            'idwisata' => $this->db->insert_id(),
+            'iduser' => $iduser,
+            'status' => 'proses',
         ];
         $result = $this->db->insert('marking', $datakordinat);
-        if ($this->db->trans_status()==true) {
+        if ($this->db->trans_status() == true) {
             $this->db->trans_commit();
             return true;
         } else {
@@ -235,22 +232,17 @@ class Wisata_model extends CI_Model
 
     public function update($data)
     {
-        if (($a = $this->do_upload()) != false) {
-            $this->db->where('idwisata', $data['idwisata']);
-            $dataa = [
-                'nama' => $data['nama'],
-                'alamat' => $data['alamat'],
-                'keterangan' => $data['keterangan'],
-                'long' => $data['long'],
-                'lat' => $data['lat'],
-                'foto' => $a['file_name'],
-            ];
-            $result = $this->db->update('wisata', $dataa);
-            if ($result) {
-                return true;
-            } else {
-                return false;
-            }
+        $this->db->where('idwisata', $data['idwisata']);
+        $dataa = [
+            'nama' => $data['nama'],
+            'alamat' => $data['alamat'],
+            'keterangan' => $data['keterangan'],
+            'idkategori_wisata' => $data['idkategori_wisata'],
+            'foto' => $data['foto']
+        ];
+        $result = $this->db->update('wisata', $dataa);
+        if ($result) {
+            return true;
         } else {
             return false;
         }

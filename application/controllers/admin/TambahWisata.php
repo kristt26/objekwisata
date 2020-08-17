@@ -83,7 +83,7 @@ class TambahWisata extends CI_Controller
     public function upload($nilai=null)
     {
         
-        $path_to_file = './assets/img/wisata/foto/' . $nilai->file;
+        $path_to_file = './assets/img/wisata/foto/' . $nilai->foto;
         $config['upload_path'] = './assets/img/wisata/foto/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
         $config['max_size'] = 4096;

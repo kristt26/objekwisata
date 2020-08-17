@@ -60,8 +60,9 @@
                                                 <td>{{wisata.status}}</td>
                                                 <td><img src="<?= base_url().'assets/img/wisata/foto/';?>{{wisata.foto}}"
                                                         width="100px" /></td>
-                                                <td class="action"><button class="btn btn-default btn-edit-wisata"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-delete-wisata"><i class="fa fa-recycle"></i></button>
+                                                <td class="action">
+                                                    <button class="btn btn-default" ng-click = "edit(wisata)"><i class="fa fa-edit"></i></button>
+                                                    <!-- <button class="btn btn-danger"><i class="fa fa-recycle"></i></button> -->
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -76,7 +77,7 @@
         <!-- /.box -->
     </div>
     <!-- /.col -->
-    <div class="modal fade" id="modal-default">
+    <div class="modal fade" id="addwisata">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,47 +90,57 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Kategori Wisata<sup style="color: red;">*</sup></label>
-                                <select class="form-control" ng-options="item as item.nama for item in datas.kategori" ng-model="kategori" 
-                                    ng-change="model.idkategori_wisata=kategori.idkategori_wisata">
+                                <select class="form-control" ng-options="item as item.nama for item in datas.kategori"
+                                    ng-model="kategori" ng-change="model.idkategori_wisata=kategori.idkategori_wisata">
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Nama<sup style="color: red;">*</sup></label>
-                                <input type="text" name="nama" class="form-control" ng-model="model.nama" placeholder="Objek Wisata"
-                                    required>
+                                <input type="text" name="nama" class="form-control" ng-model="model.nama"
+                                    placeholder="Objek Wisata" required>
                             </div>
                             <div class="form-group">
                                 <label>Alamat<sup style="color: red;">*</sup></label>
-                                <textarea type="text"  ng-model="model.alamat" class="form-control" id="alamat"
+                                <textarea type="text" ng-model="model.alamat" class="form-control" id="alamat"
                                     placeholder="Alamat" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>long<sup style="color: red;">*</sup></label>
-                                <input type="text"  ng-model="model.long" class="form-control" id="long" required>
+                                <input type="text" ng-model="model.long" class="form-control" id="long" disabled>
                             </div>
                             <div class="form-group">
                                 <label>lat<sup style="color: red;">*</sup></label>
-                                <input type="text"  ng-model="model.lat" class="form-control" id="lat" required>
+                                <input type="text" ng-model="model.lat" class="form-control" id="lat" disabled>
                             </div>
                             <div class="form-group">
-                                <label>lat<sup style="color: red;">*</sup></label>
-                                <input type="text"  ng-model="model.biayapondok" class="form-control" id="lat" required>
+                                <label>Biaya Pondok<sup style="color: red;">*</sup></label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Rp.</span>
+                                    <input ng-disabled="model.status && model.status != 'Draf'" type="text" class="form-control text-right" id="biayapondok" ng-model="model.biayapondok" ui-number-mask="0" required>
+                                    <span class="input-group-addon">,00</span>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>lat<sup style="color: red;">*</sup></label>
-                                <input type="text"  ng-model="model.biayaparkir" class="form-control" id="lat" required>
+                                <label>Biaya Parkir<sup style="color: red;">*</sup></label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Rp.</span>
+                                    <input ng-disabled="model.status && model.status != 'Draf'" type="text" class="form-control text-right" id="biayaparkir" ng-model="model.biayaparkir" ui-number-mask="0" required>
+                                    <span class="input-group-addon">,00</span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>keterangan<sup style="color: red;">*</sup></label>
-                                <textarea type="text"  ng-model="model.keterangan" class="form-control" id="keterangan"
+                                <textarea type="text" ng-model="model.keterangan" class="form-control" rows="10" id="keterangan"
                                     placeholder="keterangan" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Foto Wisata<sup style="color: red;">*</sup></label>
                                 <div class="form-group inputDnD">
                                     <!-- <label class="sr-only" for="inputFile">File Upload</label> -->
-                                    <input ng-disabled="model.status && model.status != 'Draf'" type="file" class="form-control-file form-control-sm text-secondary font-weight-bold" id="inputFile" 
-                                    file-model = "myFile" accept="image/*, application/pdf" data-title="{{fileTitle}}">
+                                    <input ng-disabled="model.status && model.status != 'Draf'" type="file"
+                                        class="form-control-file form-control-sm text-secondary font-weight-bold"
+                                        id="inputFile" file-model="myFile" accept="image/*, application/pdf"
+                                        data-title="{{fileTitle}}">
                                 </div>
                             </div>
                         </div>
@@ -137,64 +148,6 @@
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="edit-data">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Ubah Kategori Wisata</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url();?>admin/wisata/ubah" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <!-- <label>Kategori Wisata</label>
-                        <div>
-                        <select class="form-control" name="idkategori_wisata">
-                                <?php foreach($kategori as $row):?>
-                                <option value="<?php echo $row['idkategori_wisata'];?>"><?php echo $row['nama'];?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div> -->
-                            <div class="form-group">
-                                <label>Nama</label>
-                                <input type="hidden" name="idwisata" class="idwisata" id="idwisata">
-                                <input type="text" name="nama" class="form-control nama" id="nama"
-                                    placeholder="Objek Wisata" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Alamat</label>
-                                <textarea type="text" name="alamat" class="form-control alamat" id="alamat"
-                                    placeholder="Alamat" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>long</label>
-                                <input type="text" name="long" class="form-control long" id="long" required>
-                            </div>
-                            <div class="form-group">
-                                <label>lat</label>
-                                <input type="text" name="lat" class="form-control lat" id="lat" required>
-                            </div>
-                            <div class="form-group">
-                                <label>keterangan</label>
-                                <textarea type="text" name="keterangan" class="form-control keterangan" id="keterangan"
-                                    placeholder="keterangan" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Foto</label>
-                                <input type="file" class="form-control" name="foto" size="20" />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default pull-left"
-                                    data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
                     </form>
                 </div>
 

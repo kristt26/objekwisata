@@ -7,7 +7,7 @@
                     <div ng-repeat="item in datas.event" class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                         <div class="thumbnail">
                             <div style="margin-left:12px; margin-right:12px">
-                                <a href="<?= base_url()?>guest/event/readevent/{{item.idwisata}}">
+                                <a href="<?= base_url()?>guest/event/readevent/{{item.idevent}}">
                                     <h4>{{item.nama | limitTo:20}} <span ng-if="item.nama.length>20">...</span></h4>
                                 </a>
                                 <img src="<?= base_url('assets/img/event/')?>{{item.foto}}" width="100%"
@@ -19,7 +19,7 @@
                                         {{convertdate(item.tgl_posting) | date: 'EEEE, dd MMM yyyy'}}</a>
                                 </p>
                                 <hr>
-                                <p class="text-justify" ng-bind-html="htmltotext(item.keterangan) | limitTo:120"></p>
+                                <p class="text-justify">{{item.stringtext | limitTo:120 }}</p>
                             </div>
                         </div>
                     </div>

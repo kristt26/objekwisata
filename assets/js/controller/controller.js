@@ -85,6 +85,7 @@
     $scope.url = helperServices.url;
     $scope.datas = [];
     $scope.model = {};
+    
     $scope.fileTitle = "Drag and drop a file";
     let googleMap;
     $scope.convertdate = (item) => {
@@ -154,6 +155,10 @@
 
     };
     $scope.simpan=()=>{
+      $.LoadingOverlay("show", {
+        image       : "",
+        fontawesome : "fas fa-cog fa-spin"
+      });
       var fd = new FormData();
       if ($scope.myFile) {
         var file = $scope.myFile;
@@ -172,6 +177,9 @@
         })
         .then((willDelete) => {
           window.location.href = helperServices.url + '/objekwisata/guest/wisata';
+          $scope.model = {};
+          $.LoadingOverlay("hide");
+          $("#addwisata").modal('hide');
         });
 
       })
@@ -228,14 +236,20 @@
       $.LoadingOverlay("hide");
     })
   }
-  function eventController($scope, helperServices, EventService) {
+  function eventController($scope, helperServices, EventService, $sce) {
     $scope.datas = [];
     $scope.Event = [];
     $scope.convertdate = (item) => {
       return new Date(item);
     }
+    $scope.htmltotext =(item)=>{
+      return $sce.trustAsHtml(item);
+    }
     EventService.get().then(x => {
       $scope.datas = x;
+      // $scope.datas.forEach(element=>{
+      //   element.string = $sce.trustAsHtml(element.isi);
+      // })
       $.LoadingOverlay("hide");
     })
   }

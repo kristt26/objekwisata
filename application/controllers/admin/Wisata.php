@@ -57,19 +57,14 @@ class Wisata extends CI_Controller
 	public function ubah()
     {
         $data = $_POST;
-        $cek = $this->WisataModel->selectfoto();
-        $nilai;
-        foreach ($cek as $key => $value) {
-            if($value->idwisata==$idRencanaKerja)
-                $nilai = $value;
-        }
+        $cek = $this->WisataModel->selectfotowisata($data['idwisata']);
+        $upload = $this->upload($cek);
+        $data['foto'] = $upload['file'];
         $output = $this->WisataModel->update($data);
         if ($output) {
-            $this->session->set_flashdata('pesan', 'Berhasil di Ubah, success');
-            redirect('admin/wisata');
+            echo json_encode($data);
         }else{
-            $this->session->set_flashdata('pesan', 'Gagal di Ubah, error');
-            redirect('admin/wisata');
+            echo json_encode(false);
         }
 	}
 	public function hapus()
@@ -80,16 +75,17 @@ class Wisata extends CI_Controller
 		redirect('admin/kategori');
         
     }
-    public function upload($idRencanaKerja=null)
+    public function upload($nilai=null)
     {
         
-        $path_to_file = './assets/berkas/' . $nilai->file;
-        $config['upload_path'] = './assets/berkas';
+        
+        $config['upload_path'] = './assets/img/wisata/foto/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
         $config['max_size'] = 4096;
         $config['encrypt_name'] = true;
         if(isset($_FILES['file'])){
             if ($nilai->file !== null) {
+                $path_to_file = './assets/img/wisata/foto/' . $nilai->foto;
                 if (unlink($path_to_file)) {
                     $this->load->library('upload', $config);
                     if ($this->upload->do_upload("file")) {
@@ -111,7 +107,7 @@ class Wisata extends CI_Controller
                 }
             }
         }else{
-            return array('file' => $nilai->file);
+            return array('file' => $nilai->foto);
         }
     }
         

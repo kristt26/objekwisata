@@ -4,12 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Registration Page</title>
+  <title>ObjekWisata | Registration Page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?=base_url();?>assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/Ionicons/css/ionicons.min.css">
@@ -43,11 +44,11 @@
       <form action="<?php echo base_url();?>registration/register" method="post">
         <div class="form-group has-feedback">
           <input type="text" class="form-control" name="username" id="username" placeholder="User anda" required>
-          <span class="glyphicon glyphicon-clone form-control-feedback"></span>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
           <input type="text" class="form-control" name="nama" placeholder="Nama lengkap" required>
-          <span class="glyphicon glyphicon-clone form-control-feedback"></span>
+          <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
           <textarea type="text" class="form-control" name="alamat" placeholder="Alamat lengkap" required></textarea>
@@ -108,7 +109,8 @@
 
   <!-- iCheck -->
   <script src="<?php echo base_url();?>assets/plugins/iCheck/icheck.min.js"></script>
-  <script src="<?php echo base_url();?>assets/js/script.js"></script>
+  <!-- <script src="<?php echo base_url();?>assets/js/script.js"></script> -->
+  <script type="text/javascript" src="<?php echo base_url(); ?>assets/bower_components/jquery-loading-overlay/dist/loadingoverlay.min.js"></script>
   <script>
     $(function () {
       $('input').iCheck({
@@ -117,6 +119,31 @@
         increaseArea: '20%' /* optional */
       });
     });
+    $(function () {
+      $(document).ready(function () {
+        $('.btn-flat').on('click', function () {
+          $.LoadingOverlay("show", {
+              image       : "",
+              fontawesome : "fas fa-cog fa-spin"
+          });
+        });
+      })
+    })
+    // $(function () {
+    //   $(document).ready(function () {
+    //       var data = $('.data-flush').data('flash');
+    //       console.log(data);
+    //       if (data) {
+    //           $.LoadingOverlay("hide");
+    //           var a = data.split(',');
+    //           if (a[1].replace(/\s/g, '') == 'success') {
+    //               swal("Information!", a[0], "success");
+    //           } else {
+    //               swal("Information!", a[0], "error");
+    //           }
+    //       }
+    //   })
+    // })
   </script>
 </body>
 
