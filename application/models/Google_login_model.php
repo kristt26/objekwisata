@@ -21,7 +21,7 @@ class Google_login_model extends CI_Model
                         `user`.`jenis`
                     FROM
                         `user`
-                        LEFT JOIN `member` ON `member`.`iduser` = `user`.`iduser` WHERE member.oauth_uid='$id'");
+                        LEFT JOIN `member` ON `member`.`iduser` = `user`.`iduser` WHERE member.oauth_uid='$id' AND user.status='Aktif'");
         return $resultuser->result();
     }
 

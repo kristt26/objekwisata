@@ -12,7 +12,7 @@ class User_model extends CI_Model
                     `user`.`jenis`
                 FROM
                     `user`
-                    LEFT JOIN `admin` ON `admin`.`iduser` = `user`.`iduser` WHERE user.username='$data[username]' AND user.password='$data[password]'");
+                    LEFT JOIN `admin` ON `admin`.`iduser` = `user`.`iduser` WHERE user.username='$data[username]' AND user.password='$data[password]' AND user.status='Aktif'");
                 return $resultuser->result();
             } else {
                 if ($result->row('status') == 'Pending') {

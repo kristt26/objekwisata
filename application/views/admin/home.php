@@ -1,6 +1,14 @@
 <div ng-app="app" ng-controller="homeController">
     <div class="row">
         <div class="col-md-12">
+            <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; margin-bottom: -12px">
+                DINAS PARIWISATA
+            </h3>
+            <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">
+                KOTA PAPUA
+            </h3>
+        </div>
+        <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Kategori Wisata</h3>

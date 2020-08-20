@@ -1,7 +1,7 @@
 <div ng-app="app" ng-controller="homeController">
   <div id="background">
     <div class="jumbotron">
-      <h1>Danau Sentai</h1>
+      <h1>Jembatan Merah</h1>
       <!-- <p>Think BIG with a Bootstrap Jumbotron!</p> -->
     </div>
     <!-- <div class="jumbotron">

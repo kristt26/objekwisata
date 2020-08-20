@@ -34,7 +34,7 @@
                             <div id="collapse{{kategori.idkategori_wisata}}"
                                 class="panel-collapse collapse {{$index==0 ? 'in' : ''}}" role="tabpanel"
                                 aria-labelledby="heading{{kategori.idkategori_wisata}}">
-                                <div class="panel-body">
+                                <div class="panel-body" style="width:100wh; overflow-x: auto;">
                                     <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
@@ -54,7 +54,7 @@
                                                 <td>{{$index+1}}</td>
                                                 <td>{{wisata.nama}}</td>
                                                 <td>{{wisata.alamat}}</td>
-                                                <td>{{wisata.keterangan | limitTo: 300}}...</td>
+                                                <td>{{wisata.keterangan | limitTo: 100}}...</td>
                                                 <td>{{wisata.long}}</td>
                                                 <td>{{wisata.lat}}</td>
                                                 <td>{{wisata.status}}</td>
