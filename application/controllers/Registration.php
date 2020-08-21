@@ -46,6 +46,7 @@ class Registration extends CI_Controller
         $config['smtp_pass'] = 'stimik1011';
         $config['charset'] = 'iso-8859-1';
         $config['newline'] = "\r\n";
+        $config['smtp_timeout'] = '7';
         $config['mailtype'] = 'html'; // or html
         $config['validation'] = true;
         $this->load->library('email', $config);
