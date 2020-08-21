@@ -17,7 +17,7 @@ class Google_login extends CI_Controller
         $google_client = new Google_Client();
         $google_client->setClientId('981383344271-44t68jekt07rb2noc7l698egdem74gvv.apps.googleusercontent.com');
         $google_client->setClientSecret('4SXgqoWow6Et9tQ7deEi2Ia1');
-        $google_client->setRedirectUri('https://waena-desa.id/google_login/login');
+        $google_client->setRedirectUri('https://waena-desa.id/objekwisata/google_login/login');
         $google_client->addScope('email');
         $google_client->addScope('profile');
         $google_client->createAuthUrl();
@@ -67,7 +67,7 @@ class Google_login extends CI_Controller
         $google_client = new Google_Client();
         $google_client->setClientId('996822708677-l4cf5n1m439imknnbsjrsv7ktn5h4vk0.apps.googleusercontent.com');
         $google_client->setClientSecret('UXQAVCmrvR-ePEz35fVFkJxf');
-        $google_client->setRedirectUri('https://waena-desa.id/google_login/login');
+        $google_client->setRedirectUri('https://waena-desa.id/objekwisata/google_login/login');
         $google_client->addScope('email');
         $google_client->addScope('profile');
         if(isset($_GET["code"])){
