@@ -160,7 +160,7 @@
             dangerMode: false,
           })
             .then((value) => {
-              window.location.href = helperServices.url + '/musrembang/admin/wisata';
+              window.location.href = helperServices.url + '/objekwisata/admin/wisata';
             });
         })
       } else {
