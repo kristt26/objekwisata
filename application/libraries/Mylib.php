@@ -20,7 +20,7 @@ class Mylib
         $google_client = new Google_Client();
         $google_client->setClientId('981383344271-44t68jekt07rb2noc7l698egdem74gvv.apps.googleusercontent.com');
         $google_client->setClientSecret('4SXgqoWow6Et9tQ7deEi2Ia1');
-        $google_client->setRedirectUri('http://localhost/objekwisata/google_login/login');
+        $google_client->setRedirectUri('https://waena-desa.id/objekwisata/google_login/login');
         $google_client->addScope('email');
         $google_client->addScope('profile');
         $login_button = '<a href="'.$google_client->createAuthUrl().'" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
