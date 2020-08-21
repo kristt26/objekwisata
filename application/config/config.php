@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$ark_root  = "http://".$_SERVER['HTTP_HOST'];
+$ark_root  = "https://".$_SERVER['HTTP_HOST'];
 $ark_root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
 $config['base_url'] = $ark_root;
