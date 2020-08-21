@@ -24,7 +24,7 @@ class Registration extends CI_Controller
         $dataa['token'] = $UserToken;
         $mesg = $this->load->view('template/mailverification', $dataa, true);
         $kirim = $this->send_mail($data['email'], $mesg);
-        if ($kirim == true) {
+        if ($kirim === true) {
             $this->session->set_flashdata('pesan', 'Registrasi Berhasil, success');
             redirect('Auth');
         } else {
@@ -44,7 +44,7 @@ class Registration extends CI_Controller
         $config['smtp_port'] = 465;
         $config['smtp_user'] = $from_email;
         $config['smtp_pass'] = 'stimik1011';
-        $config['charset'] = 'utf-8';
+        $config['charset'] = 'iso-8859-1';
         $config['newline'] = "\r\n";
         $config['mailtype'] = 'html'; // or html
         $config['validation'] = true;
@@ -58,7 +58,7 @@ class Registration extends CI_Controller
         if ($this->email->send()) {
             return true;
         } else {
-            $a = $this->email->print_debugger();
+            $a = show_error($this->email->print_debugger());
             return $a;
         }
     }
