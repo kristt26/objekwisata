@@ -270,7 +270,7 @@ function wisataService($http, $q, helperServices) {
 	return service;
 }
 function addwisataService($http, $q, helperServices) {
-	var url = helperServices.url + '/objekwisata/admin/tambahwisata/';
+	var url = helperServices.url + '/objekwisata/admin/addwisata/';
 	var service = {
 		Items: []
 	};
