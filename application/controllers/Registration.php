@@ -25,7 +25,7 @@ class Registration extends CI_Controller
         $mesg = $this->load->view('template/mailverification', $dataa, true);
         $kirim = $this->send_mail($data['email'], $mesg);
         if ($kirim === true) {
-            $this->session->set_flashdata('pesan', 'Registrasi Berhasil, success');
+            $this->session->set_flashdata('pesan', 'Registrasi Berhasil Silahkan check email anda untuk aktivasi, success');
             redirect('Auth');
         } else {
             $this->session->set_flashdata('pesan', $kirim);
