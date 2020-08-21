@@ -18,7 +18,7 @@ class Wisata extends CI_Controller
     {
         $Title = ['title'=>"Objek Wisata", 'titledash'=>"Objek Wisata"];
         $this->load->view('template/header', $Title);
-        $this->load->view('admin/wisata', null, true);
+        $this->load->view('admin/objekwisata');
         // $this->load->view('admin/wisata');
         $this->load->view('template/footer');
         
