@@ -14,7 +14,7 @@
                 <div class="col-sm-12" style="margin-bottom: 10px;">
                     <div class="row">
                         <div class="box-tools pull-right">
-                            <a href="<?= base_url('admin/tambahwisata');?>" class="btn btn-primary">Tambah
+                            <a href="<?= base_url('admin/addwisata');?>" class="btn btn-primary">Tambah
                             </a>
                         </div>
                     </div>

@@ -104,7 +104,7 @@
           </li>
           <li><a href="<?php echo base_url();?>admin/wisata"><i class="fa fa-map-marker"></i> <span>Wisata</span></a></li>
           <li><a href="<?php echo base_url();?>admin/event"><i class="fa fa-calendar"></i> <span>Event</span></a></li>
-          <li><a href="<?php echo base_url();?>admin/bukutamu"><i class="fa fa-book"></i> <span>Buku Tamu</span></a></li>
+          <li><a href="<?php echo base_url();?>admin/tamu"><i class="fa fa-book"></i> <span>Buku Tamu</span></a></li>
           <li><a href="<?php echo base_url();?>admin/marking"><i class="fa fa-map-marker"></i> <span>Marking</span></a></li>
         </ul>
       </section>
