@@ -23,11 +23,13 @@ class Registration extends CI_Controller
         $UserToken = $this->authorization_token->generateToken($output);
         $dataa['token'] = $UserToken;
         $mesg = $this->load->view('template/mailverification', $dataa, true);
-        if ($this->send_mail($data['email'], $mesg)) {
+        $kirim = $this->send_mail($data['email'], $mesg);
+        if ($kirim == true) {
             $this->session->set_flashdata('pesan', 'Registrasi Berhasil, success');
             redirect('Auth');
         } else {
-            $this->session->set_flashdata('pesan', 'Registrasi Berhasil, success');
+            $this->session->set_flashdata('pesan', $kirim);
+            redirect('registration');
         }
     }
 
@@ -57,7 +59,7 @@ class Registration extends CI_Controller
             return true;
         } else {
             $a = $this->email->print_debugger();
-            return false;
+            return $a;
         }
     }
 
