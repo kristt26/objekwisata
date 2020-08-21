@@ -6,8 +6,7 @@ class Wisata extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("admin/Wisata_model", "WisataModel");
-        $this->load->model('admin/Kategori_model', 'KategoriModel');
+        
         if(!$this->session->userdata('user_data'))
 		{
 			redirect('auth');
@@ -25,6 +24,8 @@ class Wisata extends CI_Controller
 
     public function getdata()
     {
+        $this->load->model("admin/Wisata_model", "WisataModel");
+        $this->load->model('admin/Kategori_model', 'KategoriModel');
         $data['wisata'] = $this->WisataModel->select();
         $data['kategori'] = $this->KategoriModel->select();
         echo json_encode($data);
@@ -32,12 +33,14 @@ class Wisata extends CI_Controller
 
     public function getByid()
     {
+        $this->load->model("admin/Wisata_model", "WisataModel");
         $data = $this->input->post();
         $data = $this->WisataModel->selectbyid($data);
         echo json_encode($data);
     }
     public function tambah()
     {
+        $this->load->model("admin/Wisata_model", "WisataModel");
         $data = $_POST;
         $file = $this->upload($data['idwisata']);
         if (count($file) > 0) {
@@ -56,6 +59,7 @@ class Wisata extends CI_Controller
 	}
 	public function ubah()
     {
+        $this->load->model("admin/Wisata_model", "WisataModel");
         $data = $_POST;
         $cek = $this->WisataModel->selectfotowisata($data['idwisata']);
         $upload = $this->upload($cek);
@@ -69,6 +73,7 @@ class Wisata extends CI_Controller
 	}
 	public function hapus()
     {
+        $this->load->model("admin/Wisata_model", "WisataModel");
         $data = $this->input->post();
 		$output = $this->WisataModel->delete($data);
 		$this->session->set_flashdata('error', 'Berhasil di Ubah');
