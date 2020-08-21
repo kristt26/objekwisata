@@ -425,7 +425,7 @@ function homeService($http, $q, helperServices) {
 	return service;
 }
 function bukuTamuService($http, $q, helperServices) {
-	var url = helperServices.url + '/objekwisata/admin/bukutamu/';
+	var url = helperServices.url + '/objekwisata/admin/tamu/';
 	var service = {
 		Items: []
 	};

@@ -387,7 +387,7 @@ function EventService($http, $q, helperServices) {
 	return service;
 }
 function BukutamuService($http, $q, helperServices) {
-	var url = helperServices.url + '/objekwisata/guest/tamu/';
+	var url = helperServices.url + '/objekwisata/guest/bukutamu/';
 	var service = {};
 	
 	service.post = function (param) {
