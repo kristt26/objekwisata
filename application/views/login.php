@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="<?=base_url();?>assets/img/logo.png">
   <title>ObjekWisata | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -34,11 +35,12 @@
   <div class="data-flush" data-flash="<?= $this->session->flashdata('pesan');?>"></div>
   <div class="login-box">
     <div class="login-logo">
+      <img src="<?= base_url('assets/img/logo.png')?>" alt="">
       <a href="<?php echo base_url();?>assets/index2.html"><b>Wisata Papua</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Silahkan login</p>
 
       <form action="<?php echo base_url();?>auth/login" method="post">
         <div class="form-group has-feedback">
