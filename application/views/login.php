@@ -35,7 +35,7 @@
   <div class="data-flush" data-flash="<?= $this->session->flashdata('pesan');?>"></div>
   <div class="login-box">
     <div class="login-logo">
-      <img src="<?= base_url('assets/img/logo.png')?>" alt="">
+      <img src="<?= base_url('assets/img/logo.png')?>" alt="" width="100px">
       <a href="<?php echo base_url();?>assets/index2.html"><b>Wisata Papua</b></a>
     </div>
     <!-- /.login-logo -->
