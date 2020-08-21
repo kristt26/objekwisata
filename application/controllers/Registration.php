@@ -50,7 +50,7 @@ class Registration extends CI_Controller
         $config['mailtype'] = 'html'; // or html
         $config['validation'] = true;
         $this->load->library('email', $config);
-        $this->email->from('emailfortesting1011@gmail.com', 'Wisata Jayapura');
+        $this->email->from($from_email, 'Wisata Jayapura');
         $this->email->to($to_email);
         $this->email->subject('Konfirmasi Akun');
         $this->email->message($message);
