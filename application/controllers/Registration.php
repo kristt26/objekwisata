@@ -37,13 +37,13 @@ class Registration extends CI_Controller
     {
         // $message = base_url(). "auth/akt?ivasi/".$token;
 
-        $from_email = "ajenrkis";
+        $from_email = "ajenkris@stimiksepnop.ac.id";
         $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'mail.smtp2go.com';
+        $config['smtp_host'] = 'srv26.niagahoster.com';
         $config['smtp_crypto'] = 'ssl';
         $config['smtp_port'] = 465;
         $config['smtp_user'] = $from_email;
-        $config['smtp_pass'] = '26031988@Aj';
+        $config['smtp_pass'] = 'stimik1011';
         $config['charset'] = 'iso-8859-1';
         $config['newline'] = "\r\n";
         $config['smtp_timeout'] = '7';
