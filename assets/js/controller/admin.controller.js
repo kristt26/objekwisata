@@ -121,7 +121,7 @@
 
     })
     $scope.Init = () => {
-      googleMap.setMarker(akhir);
+      // googleMap.setMarker(akhir);
       googleMap.showdata = $scope.show;
     };
 

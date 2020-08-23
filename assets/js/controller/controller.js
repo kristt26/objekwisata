@@ -99,7 +99,7 @@
         $scope.datas = x;
         var akhir = { lat: parseFloat(-2.542985), lng: parseFloat(140.703467) };
         googleMap = new GoogleMap(12, akhir);
-        googleMap.setMarker(akhir, x.nama);
+        // googleMap.setMarker(akhir, x.nama);
         angular.forEach($scope.datas.wisata, function(x) {
           var pos = { lat: parseFloat(x.lat), lng: parseFloat(x.long) };
           const contentString =
