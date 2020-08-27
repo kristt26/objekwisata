@@ -61,7 +61,7 @@
                                                 <td>{{itemevent.tgl_mulai}}</td>
                                                 <td>{{itemevent.tgl_selesai}}</td>
                                                 <td>{{itemevent.tgl_posting}}</td>
-                                                <td ng-bind-html="htmltotext(itemevent.isi) | limitTo: 300"></td>
+                                                <td>{{itemevent.isi | limitTo: 300}}</td>
                                                 <td><img src="<?= base_url('assets/img/event/')?>{{itemevent.foto}}"
                                                         width="100px" /></td>
                                                 <td class="action"><a

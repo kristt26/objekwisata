@@ -323,8 +323,18 @@
         fontawesome: "fas fa-cog fa-spin"
       });
       eventService.delete(item.idevent).then(x => {
-        swal("Information!", 'hapus data berhasil', "success");
         $.LoadingOverlay("hide");
+        swal({
+          title: "information",
+          text: "Hapus data event berhasil",
+          icon: "success",
+          buttons: true,
+          dangerMode: false,
+        })
+          .then((value) => {
+            window.location.href = helperServices.url + '/objekwisata/admin/event';
+          });
+        
       })
     }
     $scope.edit = (item) => {

@@ -517,11 +517,7 @@ function eventService($http, $q, helperServices) {
 			}
 		}).then(
 			(response) => {
-				service.instance = true;
-				var data = service.Items.find(x => x.idkategori_wisata == id);
-				var index = service.Items.indexOf(data);
-				service.Items.splice(index, 1);
-				def.resolve(service.Items);
+				def.resolve(response.data);
 			},
 			(err) => {
 				swal("Information!", err.data, "error");
