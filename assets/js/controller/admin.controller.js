@@ -130,10 +130,10 @@
       googleMap.setMarkercari();
     }
     $scope.simpan = () => {
-      $.LoadingOverlay("show", {
-        image: "",
-        fontawesome: "fas fa-cog fa-spin"
-      });
+      // $.LoadingOverlay("show", {
+      //   image: "",
+      //   fontawesome: "fas fa-cog fa-spin"
+      // });
       var fd = new FormData();
       if ($scope.myFile) {
         var file = $scope.myFile;
