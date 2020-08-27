@@ -68,7 +68,7 @@
                                                         href="<?= base_url();?>admin/event/add/{{itemevent.idwisata}}/{{itemevent.idevent}}"
                                                         class="btn btn-default btn-edit-event"><i
                                                             class="fa fa-edit"></i></a>
-                                                    <button class="btn btn-danger btn-delete-event"><i class="fa fa-recycle"></i></button>
+                                                    <button class="btn btn-danger" ng-click="hapus(itemevent)"><i class="fa fa-recycle"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -82,38 +82,3 @@
         </div>
     </div>
 </div>
-<script>
-    $(function () {
-        $(document).ready(function () {
-            $('.btn-delete-event').on('click', function () {
-                // get data from button edit
-                const id = $(this).data('id');
-                const Url = $(this).data('url');
-                // Set data to Form Edit
-                // $('.edit-kategori').val(idkategori);
-                swal({
-                    title: "Anda Yakin?",
-                    text: "Akan Melakukan Penghapusan data?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                type: 'POST',
-                                url: Url,
-                                data: { 'id': id },
-                                success: function (data) {
-                                    swal("Information!", "Berhasil di Hapus", "success")
-                                        .then((value) => {
-                                            location.reload();
-                                        });
-                                }
-                            });
-                        }
-                    });
-            });
-        });
-    })
-</script>
