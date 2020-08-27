@@ -2,7 +2,7 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h1 style="margin-bottom: 25px; text-align: center;">Event Wisata</h1>
+                <h1 style="margin-bottom: 25px; text-align: center;">Buku Tamu</h1>
                 <div id="bukutamu" class="row col-md-12">
                     <form ng-submit = "simpan()">
                         <div class="form-group row">

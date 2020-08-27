@@ -79,7 +79,7 @@
           dangerMode: false,
         })
           .then((value) => {
-            // window.location.href = helperServices.url + '/objekwisata/admin/wisata';
+            window.location.href = helperServices.url + '/objekwisata/admin/wisata';
           });
       })
     }
