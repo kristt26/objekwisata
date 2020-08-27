@@ -68,27 +68,20 @@
           fd.append(prop, $scope.model[prop]);
         }
       }
-      if ($scope.model.idwisata) {
-        wisataService.put(fd, $scope.model).then(x => {
-          $.LoadingOverlay("hide");
-          swal({
-            title: "information",
-            text: "Tambah data Wisata Berhasil",
-            icon: "success",
+      wisataService.put(fd, $scope.model).then(x => {
+        swal({
+          title: "information",
+          text: "Tambah data Wisata Berhasil",
+          icon: "success",
 
-            buttons: true,
-            dangerMode: false,
-          })
-            .then((value) => {
-              window.location.href = helperServices.url + '/objekwisata/admin/wisata';
-            });
+          buttons: true,
+          dangerMode: false,
         })
-      } else {
-        wisataService.post(fd).then(x => {
-          swal("Information!", 'tambah data berhasil', "success");
-          $.LoadingOverlay("hide");
-        })
-      }
+          .then((value) => {
+            // window.location.href = helperServices.url + '/objekwisata/admin/wisata';
+            $.LoadingOverlay("hide");
+          });
+      })
     }
     $scope.hapus = () => {
       $.LoadingOverlay("show", {

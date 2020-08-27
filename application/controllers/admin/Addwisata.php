@@ -46,10 +46,10 @@ class Addwisata extends CI_Controller
         $output = $this->WisataModel->insert($data);
         if($output){
             $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, success');
-            redirect('admin/wisata');
+            echo json_encode(["file"=>$file]);
         }else{
             $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, error');
-            redirect('admin/wisata');
+            echo json_encode(["file"=>$file]);
         }
         
         
@@ -57,19 +57,14 @@ class Addwisata extends CI_Controller
 	public function ubah()
     {
         $data = $_POST;
-        $cek = $this->WisataModel->selectfoto();
-        $nilai;
-        foreach ($cek as $key => $value) {
-            if($value->idRencanaKerja==$idRencanaKerja)
-                $nilai = $value;
-        }
+        $cek = $this->WisataModel->selectfotowisata($data['idwisata']);
+        $upload = $this->upload($cek);
+        $data['foto'] = $upload['file'];
         $output = $this->WisataModel->update($data);
         if ($output) {
-            $this->session->set_flashdata('pesan', 'Berhasil di Ubah, success');
-            redirect('admin/wisata');
+            echo json_encode($data);
         }else{
-            $this->session->set_flashdata('pesan', 'Gagal di Ubah, error');
-            redirect('admin/wisata');
+            echo json_encode(false);
         }
 	}
 	public function hapus()

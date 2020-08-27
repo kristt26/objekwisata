@@ -163,28 +163,6 @@ function wisataService($http, $q, helperServices) {
 		}
 		return def.promise;
 	};
-	service.post = function (item) {
-		var def = $q.defer();
-		$http({
-			method: 'POST',
-			url: url + 'simpan',
-			headers: {
-				'Content-Type': undefined
-			},
-			data: item
-		}).then(
-			(response) => {
-				service.instance = true;
-				service.Items = response.data;
-				def.resolve(service.Items);
-			},
-			(err) => {
-				swal("Information!", err.data, "error");
-				def.reject(err);
-			}
-		);
-		return def.promise;
-	};
 	service.put = function (item, param) {
 		var def = $q.defer();
 		$http({
@@ -327,7 +305,7 @@ function addwisataService($http, $q, helperServices) {
 			method: 'POST',
 			url: url + 'ubah',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': undefined
 			},
 			data: item
 		}).then(
