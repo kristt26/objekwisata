@@ -23,10 +23,10 @@
                                         <label>Kategori Wisata</label>
                                         <label>Wisata</label>
                                         <input type="text" class="form-control" id="nama" value="<?= $wisata->nama;?>" required disabled>
-                                        <input type="hidden" class="form-control" name="idwisata" id="idwisata" value="<?= $wisata->idwisata;?>">
+                                        <input type="hidden" class="form-control" name="idwisata" id="idwisata" value="<?= $event->idwisata;?>">
                                     </div>
                                 <?php }else{ ?>
-                                    <input type="hidden" class="form-control" name="idevent" id="idevent" value="<?= $wisata->idevent;?>">
+                                    <input type="hidden" class="form-control" name="idevent" id="idevent" value="<?= $event->idevent;?>">
                                 <?php };?>
                                 <div class="form-group">
                                     <label>Nama Event</label>
