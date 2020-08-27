@@ -39,7 +39,7 @@ class Addwisata extends CI_Controller
     {
         $data = $_POST;
         $file = $this->upload();
-        if (count($file) > 0) {
+        if (isset($file['file'])) {
             $data['foto'] = $file['file'];
         }
         $output = $this->WisataModel->insert($data);
