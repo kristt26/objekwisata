@@ -1,23 +1,23 @@
 <?php
 class Event_model extends CI_Model
 {
-    function select()
+    public function select()
     {
-        $data['wisata']=array();
+        $data['wisata'] = array();
         $wisata = $this->db->get('wisata');
         foreach ($wisata->result_array() as $key => $itemwisata) {
-            $itemwisata['event']= array();
-            $event = $this->db->get_where('event', array('idwisata'=>$itemwisata['idwisata']));
-            if($event->num_rows()>0){
-                $itemwisata['event'] =  $event->result();
+            $itemwisata['event'] = array();
+            $event = $this->db->get_where('event', array('idwisata' => $itemwisata['idwisata']));
+            if ($event->num_rows() > 0) {
+                $itemwisata['event'] = $event->result();
             }
             array_push($data['wisata'], $itemwisata);
         }
         return $data['wisata'];
-    } 
-    function eventonly()
+    }
+    public function eventonly()
     {
-        $data['event']=array();
+        $data['event'] = array();
         $event = $this->db->query("SELECT
             *
         FROM
@@ -28,7 +28,7 @@ class Event_model extends CI_Model
     public function selectone($id)
     {
         $resultevent = $this->db->get_where('event', array('idevent' => $id))->result()[0];
-        return $resultevent;   
+        return $resultevent;
     }
     public function selectevent()
     {
@@ -39,23 +39,23 @@ class Event_model extends CI_Model
             `event`
             LEFT JOIN `wisata` ON `wisata`.`idwisata` = `event`.`idwisata`")->result();
     }
-    function insert($data)
+    public function insert($data)
     {
         if (($a = $this->do_upload()) != false) {
             $data['foto'] = $a['file_name'];
             $text = strip_tags($data['isi']);
-            $data['stringtext'] = substr($text,0,120);
+            $data['stringtext'] = substr($text, 0, 120);
             $result = $this->db->insert('event', $data);
             return $result;
-        }else{
+        } else {
             return false;
         }
-        
-    } 
-    function update($data)
+
+    }
+    public function update($data)
     {
-        $cek = $this->db->get_where('event', ['idevent'=>$data['idevent']])->result()[0];
-        if(isset($_FILES['file'])){
+        $cek = $this->db->get_where('event', ['idevent' => $data['idevent']])->result()[0];
+        if (isset($_FILES['file'])) {
             $path_to_file = './assets/img/event/' . $cek->foto;
             if (unlink($path_to_file)) {
                 if (($a = $this->do_upload()) != false) {
@@ -67,14 +67,14 @@ class Event_model extends CI_Model
                         'tgl_selesai' => $data['tgl_selesai'],
                         'tgl_posting' => $data['tgl_posting'],
                         'stringtext' => $data['isi'],
-                        'foto' => $a['file_name']
+                        'foto' => $a['file_name'],
                     ];
                     $this->db->where('idevent', $data['idevent']);
-                    $result =  $this->db->update('event', $item);
+                    $result = $this->db->update('event', $item);
                     return $result;
                 }
             }
-        }else{
+        } else {
             $item = [
                 'nama' => $data['nama'],
                 'alamat' => $data['alamat'],
@@ -85,23 +85,28 @@ class Event_model extends CI_Model
                 'stringtext' => $data['isi'],
             ];
             $this->db->where('idevent', $data['idevent']);
-            $result =  $this->db->update('event', $item);
+            $result = $this->db->update('event', $item);
             return $result;
         }
-        
-        
 
-    } 
-    function delete($id)
+    }
+    public function delete($id)
     {
-        $this->db->where('idevent', $id);
-        $result = $this->db->delete('event');
-        if($result){
-            return true;
+        $cek = $this->db->get_where('event', ['idevent' => $id])->result()[0];
+        $path_to_file = './assets/img/event/' . $cek->foto;
+        if (unlink($path_to_file)) {
+            $this->db->where('idevent', $id);
+            $result = $this->db->delete('event');
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
         }else{
             return false;
         }
-    }    
+        
+    }
     public function do_upload()
     {
         $config['upload_path'] = './assets/img/event/';
