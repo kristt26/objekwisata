@@ -50,7 +50,7 @@ class Addwisata extends CI_Controller
                 $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, error');
                 echo json_encode($file);
             }
-        }else{
+        } else {
             echo json_encode($_FILES['file']);
         }
 
@@ -82,18 +82,14 @@ class Addwisata extends CI_Controller
         $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
         $config['max_size'] = 8096;
         $config['encrypt_name'] = true;
-        if (isset($_FILES['file'])) {
-            $this->load->library('upload', $config);
-            if ($this->upload->do_upload("file")) {
-                $data = array('upload_data' => $this->upload->data());
-                $image = $data['upload_data']['file_name'];
-                // $result = $this->ProfileModel->updategambar($image);
-                return array('file' => $image);
-            } else {
-                return array('error' => $this->upload->display_errors());
-            }
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload("file")) {
+            $data = array('upload_data' => $this->upload->data());
+            $image = $data['upload_data']['file_name'];
+            // $result = $this->ProfileModel->updategambar($image);
+            return array('file' => $image);
         } else {
-            return array('message' => 'tidak ada file');
+            return array('error' => $this->upload->display_errors());
         }
     }
 
