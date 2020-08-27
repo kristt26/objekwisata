@@ -54,20 +54,26 @@ class Event_model extends CI_Model
     } 
     function update($data)
     {
-        if (($a = $this->do_upload()) != false) {
-            $item = [
-                'nama' => $data['nama'],
-                'alamat' => $data['alamat'],
-                'isi' => $data['isi'],
-                'tgl_mulai' => $data['tgl_mulai'],
-                'tgl_selesai' => $data['tgl_selesai'],
-                'tgl_posting' => $data['tgl_posting'],
-                'stringtext' => $data['isi'],
-                'foto' => $a['file_name']
-            ];
-            $this->db->where('idevent', $data['idevent']);
-            $result =  $this->db->update('event', $item);
-            return $result;
+        $cek = $this->db->get_where('event', ['idevent'=>$data['idevent']])->result()[0];
+        if(isset($_FILES['file'])){
+            $path_to_file = './assets/img/event/' . $cek->foto;
+            if (unlink($path_to_file)) {
+                if (($a = $this->do_upload()) != false) {
+                    $item = [
+                        'nama' => $data['nama'],
+                        'alamat' => $data['alamat'],
+                        'isi' => $data['isi'],
+                        'tgl_mulai' => $data['tgl_mulai'],
+                        'tgl_selesai' => $data['tgl_selesai'],
+                        'tgl_posting' => $data['tgl_posting'],
+                        'stringtext' => $data['isi'],
+                        'foto' => $a['file_name']
+                    ];
+                    $this->db->where('idevent', $data['idevent']);
+                    $result =  $this->db->update('event', $item);
+                    return $result;
+                }
+            }
         }else{
             $item = [
                 'nama' => $data['nama'],
@@ -81,8 +87,8 @@ class Event_model extends CI_Model
             $this->db->where('idevent', $data['idevent']);
             $result =  $this->db->update('event', $item);
             return $result;
-            return $result;
         }
+        
         
 
     } 
