@@ -317,12 +317,12 @@
         })
       }
     }
-    $scope.hapus = () => {
+    $scope.hapus = (item) => {
       $.LoadingOverlay("show", {
         image: "",
         fontawesome: "fas fa-cog fa-spin"
       });
-      eventService.delete().then(x => {
+      eventService.delete(item.idevent).then(x => {
         swal("Information!", 'hapus data berhasil', "success");
         $.LoadingOverlay("hide");
       })

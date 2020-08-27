@@ -93,7 +93,11 @@ function kategoriService($http, $q, helperServices) {
 			}
 		}).then(
 			(response) => {
-				def.resolve(response.data);
+				service.instance = true;
+				var data = service.Items.find(x => x.idkategori_wisata == id);
+				var index = service.Items.indexOf(data);
+				service.Items.splice(index, 1);
+				def.resolve(service.Items);
 			},
 			(err) => {
 				swal("Information!", err.data, "error");
