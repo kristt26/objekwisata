@@ -44,8 +44,6 @@ class Event extends CI_Controller
             $result->jenis = 'wisata';
             $data['wisata'] = $result;
             $data['title'] = 'Tambah';
-            $result = $this->EventModel->selectone($idevent);
-            $data['event'] =  $result;
             $this->load->view('template/header', $Title);
             $this->load->view('admin/eventadd', $data);
             $this->load->view('template/footer');
