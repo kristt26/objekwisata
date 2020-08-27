@@ -135,9 +135,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Foto Wisata<sup style="color: red;">*</sup></label>
-                                <div class="form-group inputDnD">
+                                <div>
                                     <!-- <label class="sr-only" for="inputFile">File Upload</label> -->
-                                    <input type="file"
+                                    <input ng-disabled="model.status && model.status != 'Draf'" type="file"
                                         class="form-control-file form-control-sm text-secondary font-weight-bold"
                                         id="inputFile" file-model="myFile" accept="image/*"
                                         data-title="{{fileTitle}}">
