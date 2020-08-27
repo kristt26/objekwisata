@@ -186,7 +186,6 @@ class Wisata_model extends CI_Model
             'long' => $data['long'],
             'lat' => $data['lat'],
             'created' => $created,
-            'modifier' => $data['modifier'],
             'idwisata' => $this->db->insert_id(),
             'iduser' => $iduser,
             'status' => 'true',
