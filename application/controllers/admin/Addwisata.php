@@ -38,6 +38,7 @@ class Addwisata extends CI_Controller
     public function tambah()
     {
         $data = $_POST;
+        $data['foto'] = "";
         $file = $this->upload();
         if (isset($file['file'])) {
             $data['foto'] = $file['file'];
@@ -77,7 +78,7 @@ class Addwisata extends CI_Controller
     {
         $config['upload_path'] = './assets/img/wisata/foto/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
-        $config['max_size'] = 4096;
+        $config['max_size'] = 8096;
         $config['encrypt_name'] = true;
         if (isset($_FILES['file'])) {
             $this->load->library('upload', $config);
