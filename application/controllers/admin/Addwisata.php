@@ -94,7 +94,7 @@ class Addwisata extends CI_Controller
                 $a = $error;
             }
         } else {
-            return array('file' => 'tidak ada file');
+            return array('message' => 'tidak ada file');
         }
     }
 
