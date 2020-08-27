@@ -28,10 +28,12 @@ class Event extends CI_Controller
     function add($idwisata= null, $idevent = null)
     {
         $Title = ['title'=>"Tambah Event Wisata", 'titledash'=>"Tambah Event"];
-        if(is_null($idwisata)){
-            $result = $this->EventModel->selectone($idwisata)[0];
+        if(!is_null($idevent)){
+            $result = $this->WisataModel->selectone($idwisata)[0];
             $result->jenis = 'event';
             $data['wisata'] =  $result;
+            $result = $this->EventModel->selectone($idevent);
+            $data['event'] =  $result;
             $data['title'] = 'Ubah';
 
             $this->load->view('template/header', $Title);
@@ -42,6 +44,8 @@ class Event extends CI_Controller
             $result->jenis = 'wisata';
             $data['wisata'] = $result;
             $data['title'] = 'Tambah';
+            $result = $this->EventModel->selectone($idevent);
+            $data['event'] =  $result;
             $this->load->view('template/header', $Title);
             $this->load->view('admin/eventadd', $data);
             $this->load->view('template/footer');

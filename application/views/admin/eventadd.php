@@ -30,31 +30,31 @@
                                 <?php };?>
                                 <div class="form-group">
                                     <label>Nama Event</label>
-                                    <input type="text" name="nama" class="form-control" id="nama" value="<?= $nama = $wisata->jenis==='event'? $wisata->nama : '';?>" placeholder="Nama Event" required>
+                                    <input type="text" name="nama" class="form-control" id="nama" value="<?= $nama = $wisata->jenis==='event'? $event->nama : '';?>" placeholder="Nama Event" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Lokasi</label>
-                                    <textarea type="text" name="alamat" class="form-control" id="alamat" placeholder="Lokasi Event" required><?= $alamat = $wisata->jenis==='event'? $wisata->alamat : '';?></textarea>
+                                    <textarea type="text" name="alamat" class="form-control" id="alamat" placeholder="Lokasi Event" required><?= $alamat = $wisata->jenis==='event'? $event->alamat : '';?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Mulai</label>
-                                    <input type="text" name="tgl_mulai" class="form-control datepicker" value="<?= $tgl_mulai = $wisata->jenis==='event'? $wisata->tgl_mulai : '';?>" placeholder="Tanggal Mulai" required>
+                                    <input type="text" name="tgl_mulai" class="form-control datepicker" value="<?= $tgl_mulai = $wisata->jenis==='event'? $event->tgl_mulai : '';?>" placeholder="Tanggal Mulai" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Selesai</label>
-                                    <input type="text" name="tgl_selesai" class="form-control" id="datepicker1" value="<?= $tgl_selesai = $wisata->jenis==='event'? $wisata->tgl_selesai : '';?>" placeholder="Tanggal Selesai" required>
+                                    <input type="text" name="tgl_selesai" class="form-control" id="datepicker1" value="<?= $tgl_selesai = $wisata->jenis==='event'? $event->tgl_selesai : '';?>" placeholder="Tanggal Selesai" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Posting</label>
-                                    <input type="text" name="tgl_posting" class="form-control" id="datepicker2" value="<?= $tgl_posting = $wisata->jenis==='event'? $wisata->tgl_posting : '';?>" placeholder="Tanggal Posting" required>
+                                    <input type="text" name="tgl_posting" class="form-control" id="datepicker2" value="<?= $tgl_posting = $wisata->jenis==='event'? $event->tgl_posting : '';?>" placeholder="Tanggal Posting" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Isi Event</label>
-                                    <textarea id="editor1" type="text" name="isi" class="form-control" placeholder="keterangan" required><?= $isi = $wisata->jenis==='event'? $wisata->isi : '';?></textarea>
+                                    <textarea id="editor1" type="text" name="isi" class="form-control" placeholder="keterangan" required><?= $isi = $wisata->jenis==='event'? $event->isi : '';?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input type="file" class="form-control" name="foto" size="20" value="<?= $tgl_posting = $wisata->jenis==='event'? $wisata->foto : '';?>" />
+                                    <input type="file" class="form-control" name="foto" size="20" value="<?= $tgl_posting = $wisata->jenis==='event'? $event->foto : '';?>" />
                                 </div>
                             </div>
                             <div class="modal-footer">
