@@ -65,7 +65,7 @@
                                                 <td><img src="<?= base_url('assets/img/event/')?>{{itemevent.foto}}"
                                                         width="100px" /></td>
                                                 <td class="action"><a
-                                                        href="<?= base_url();?>admin/event/add?idevent={{itemevent.idevent}}"
+                                                        href="<?= base_url();?>admin/event/add/{{itemevent.idwisata}}/{{itemevent.idevent}}"
                                                         class="btn btn-default btn-edit-event"><i
                                                             class="fa fa-edit"></i></a>
                                                     <button class="btn btn-danger btn-delete-event"><i class="fa fa-recycle"></i></button>
