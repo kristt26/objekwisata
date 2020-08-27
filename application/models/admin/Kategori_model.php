@@ -33,9 +33,9 @@ class Kategori_model extends CI_Model
         }
                 
     }
-    public function delete($data)
+    public function delete($id)
     {
-        $this->db->where('idkategori_wisata', $data['id']);
+        $this->db->where('idkategori_wisata', $id);
         $result = $this->db->delete('kategori_wisata');
         if($result){
             return true;

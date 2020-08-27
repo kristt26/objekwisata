@@ -43,8 +43,7 @@ class Kategori extends CI_Controller
 	}
 	public function hapus($id = null)
     {
-        $data = $this->input->post();
-		$output = $this->KategoriModel->delete($data);
+		$output = $this->KategoriModel->delete($id);
         echo json_encode($output);
     }
 }

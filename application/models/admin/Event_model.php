@@ -86,9 +86,9 @@ class Event_model extends CI_Model
         
 
     } 
-    function delete($data)
+    function delete($id)
     {
-        $this->db->where('idevent', $data['id']);
+        $this->db->where('idevent', $id);
         $result = $this->db->delete('event');
         if($result){
             return true;

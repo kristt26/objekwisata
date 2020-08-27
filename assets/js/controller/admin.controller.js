@@ -29,8 +29,8 @@
         })
       }
     }
-    $scope.hapus = () => {
-      kategoriService.delete().then(x => {
+    $scope.hapus = (item) => {
+      kategoriService.delete(item.idkategori_wisata).then(x => {
         swal("Information!", 'hapus data berhasil', "success");
       })
     }

@@ -25,11 +25,11 @@ class Event extends CI_Controller
         $data['event'] = $this->EventModel->select();
         echo json_encode($data);
     }
-    function add($idwisata= null)
+    function add($idwisata= null, $idevent = null)
     {
         $Title = ['title'=>"Tambah Event Wisata", 'titledash'=>"Tambah Event"];
         if(is_null($idwisata)){
-            $result = $this->EventModel->selectone($_GET['idevent'])[0];
+            $result = $this->EventModel->selectone($idwisata)[0];
             $result->jenis = 'event';
             $data['wisata'] =  $result;
             $data['title'] = 'Ubah';
@@ -70,10 +70,9 @@ class Event extends CI_Controller
             redirect('admin/event/add/'.$data['idwisata']);
         }
     }
-    function hapus()
+    function hapus($idevent = null)
     {
-        $data = $this->input->post();
-        $output = $this->EventModel->delete($data);
+        $output = $this->EventModel->delete($idevent);
         if($output){
             $this->session->set_flashdata('pesan', 'Berhasil menghapus, success');
             redirect('admin/event');
