@@ -168,6 +168,7 @@
         }
       }
       WisataService.post(fd).then(x=>{
+        $.LoadingOverlay("hide");
         swal({
           title: "Information",
           text: "Anda berhasil menambahkan marker",
@@ -178,7 +179,7 @@
         .then((willDelete) => {
           window.location.href = helperServices.url + '/objekwisata/guest/wisata';
           $scope.model = {};
-          $.LoadingOverlay("hide");
+          
           $("#addwisata").modal('hide');
         });
 
