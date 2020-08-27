@@ -69,6 +69,7 @@
         }
       }
       wisataService.put(fd, $scope.model).then(x => {
+        $.LoadingOverlay("hide");
         swal({
           title: "information",
           text: "Tambah data Wisata Berhasil",
@@ -79,7 +80,6 @@
         })
           .then((value) => {
             // window.location.href = helperServices.url + '/objekwisata/admin/wisata';
-            $.LoadingOverlay("hide");
           });
       })
     }
@@ -130,10 +130,10 @@
       googleMap.setMarkercari();
     }
     $scope.simpan = () => {
-      // $.LoadingOverlay("show", {
-      //   image: "",
-      //   fontawesome: "fas fa-cog fa-spin"
-      // });
+      $.LoadingOverlay("show", {
+        image: "",
+        fontawesome: "fas fa-cog fa-spin"
+      });
       var fd = new FormData();
       if ($scope.myFile) {
         var file = $scope.myFile;
@@ -144,6 +144,7 @@
       }
       if ($scope.model.idwisata) {
         addwisataService.put(fd).then(x => {
+          $.LoadingOverlay("hide");
           swal({
             title: "information",
             text: "Tambah data Wisata Berhasil",
@@ -158,6 +159,7 @@
         })
       } else {
         addwisataService.post(fd).then(x => {
+          $.LoadingOverlay("hide");
           swal({
             title: "information",
             text: "Ubah data Wisata Berhasil",
