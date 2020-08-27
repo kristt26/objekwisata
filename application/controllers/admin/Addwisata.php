@@ -90,8 +90,7 @@ class Addwisata extends CI_Controller
                 // $result = $this->ProfileModel->updategambar($image);
                 return array('file' => $image);
             } else {
-                $error = array('error' => $this->upload->display_errors());
-                $a = $error;
+                return array('error' => $this->upload->display_errors());
             }
         } else {
             return array('message' => 'tidak ada file');
