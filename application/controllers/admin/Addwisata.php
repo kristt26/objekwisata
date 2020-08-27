@@ -42,14 +42,16 @@ class Addwisata extends CI_Controller
         $file = $this->upload();
         if (isset($file['file'])) {
             $data['foto'] = $file['file'];
-        }
-        $output = $this->WisataModel->insert($data);
-        if ($output) {
-            $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, success');
-            echo json_encode(["file" => $file]);
-        } else {
-            $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, error');
-            echo json_encode(["file" => $file]);
+            $output = $this->WisataModel->insert($data);
+            if ($output) {
+                $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, success');
+                echo json_encode($file);
+            } else {
+                $this->session->set_flashdata('pesan', 'Berhasil di Tambahkan, error');
+                echo json_encode($file);
+            }
+        }else{
+            echo json_encode($file);
         }
 
     }
