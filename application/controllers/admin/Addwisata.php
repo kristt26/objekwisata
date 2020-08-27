@@ -51,7 +51,7 @@ class Addwisata extends CI_Controller
                 echo json_encode($file);
             }
         }else{
-            echo json_encode(array('message' => 'tidak ada file'));
+            echo json_encode($_FILES['file']);
         }
 
     }
