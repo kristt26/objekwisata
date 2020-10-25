@@ -9,7 +9,7 @@
   </div>
 <div class="div">
     <div class="container kaki">
-      <h5 class="text-center">WISATA PAPUA © 2018</h5>
+      <h5 class="text-center">WISATA PAPUA © 2020</h5>
     </div>
 </div>
   <!-- kaki -->
