@@ -137,9 +137,9 @@ class Wisata_model extends CI_Model
     public function selectwisata()
     {
         $user = $this->session->userdata('user_data');
-        if(isset($user->iduser)){
+        if (isset($user->iduser)) {
             $string = "user.iduser='$user->iduser' OR ";
-        }else{
+        } else {
             $string = '';
         }
         $resultwisata = $this->db->query("SELECT
@@ -163,7 +163,8 @@ class Wisata_model extends CI_Model
             LEFT JOIN `admin` ON `admin`.`iduser` = `user`.`iduser`
             LEFT JOIN `kategori_wisata` ON `kategori_wisata`.`idkategori_wisata` =
             `wisata`.`idkategori_wisata`
-            WHERE $string user.jenis='admin' OR marking.status='true'")->result();
+            WHERE $string user.jenis='admin' OR marking.status='true'
+            ORDER BY `kategori_wisata`.`nama` ASC")->result();
         return $resultwisata;
     }
 
@@ -242,7 +243,7 @@ class Wisata_model extends CI_Model
             'alamat' => $data['alamat'],
             'keterangan' => $data['keterangan'],
             'idkategori_wisata' => $data['idkategori_wisata'],
-            'foto' => $data['foto']
+            'foto' => $data['foto'],
         ];
         $result = $this->db->update('wisata', $dataa);
         if ($result) {

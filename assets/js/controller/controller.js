@@ -85,13 +85,13 @@
     $scope.url = helperServices.url;
     $scope.datas = [];
     $scope.model = {};
-    
+
     $scope.fileTitle = "Drag and drop a file";
     let googleMap;
     $scope.convertdate = (item) => {
       return new Date(item);
     }
-    $scope.htmltotext =(item)=>{
+    $scope.htmltotext = (item) => {
       return $sce.trustAsHtml(item);
     }
     $scope.Init = () => {
@@ -100,7 +100,7 @@
         var akhir = { lat: parseFloat(-2.542985), lng: parseFloat(140.703467) };
         googleMap = new GoogleMap(12, akhir);
         // googleMap.setMarker(akhir, x.nama);
-        angular.forEach($scope.datas.wisata, function(x) {
+        angular.forEach($scope.datas.wisata, function (x) {
           var pos = { lat: parseFloat(x.lat), lng: parseFloat(x.long) };
           const contentString =
             '<div id="content">' +
@@ -154,10 +154,10 @@
       });
 
     };
-    $scope.simpan=()=>{
+    $scope.simpan = () => {
       $.LoadingOverlay("show", {
-        image       : "",
-        fontawesome : "fas fa-cog fa-spin"
+        image: "",
+        fontawesome: "fas fa-cog fa-spin"
       });
       var fd = new FormData();
       if ($scope.myFile) {
@@ -167,7 +167,7 @@
           fd.append(prop, $scope.model[prop]);
         }
       }
-      WisataService.post(fd).then(x=>{
+      WisataService.post(fd).then(x => {
         $.LoadingOverlay("hide");
         swal({
           title: "Information",
@@ -176,12 +176,12 @@
           buttons: true,
           dangerMode: false,
         })
-        .then((willDelete) => {
-          window.location.href = helperServices.url + '/objekwisata/guest/wisata';
-          $scope.model = {};
-          
-          $("#addwisata").modal('hide');
-        });
+          .then((willDelete) => {
+            window.location.href = helperServices.url + '/objekwisata/guest/wisata';
+            $scope.model = {};
+
+            $("#addwisata").modal('hide');
+          });
 
       })
     }
@@ -243,7 +243,7 @@
     $scope.convertdate = (item) => {
       return new Date(item);
     }
-    $scope.htmltotext =(item)=>{
+    $scope.htmltotext = (item) => {
       return $sce.trustAsHtml(item);
     }
     EventService.get().then(x => {
@@ -266,10 +266,10 @@
         fontawesome: "fas fa-snowflake fa-spin",
       });
       var url = "https://ipinfo.io/?token=299b1dbfd06d99";
-      $http.get(url).then(function(response) {
+      $http.get(url).then(function (response) {
         console.log(JSON.stringify(response.data));
         $scope.model.location = JSON.stringify(response.data)
-        BukutamuService.post($scope.model).then(x=>{
+        BukutamuService.post($scope.model).then(x => {
           swal("Information!", "Terima kasih telah mengisi buku tamu", "success");
           $scope.model = {};
           $.LoadingOverlay("hide");

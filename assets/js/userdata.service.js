@@ -50,12 +50,12 @@ function readWisataService($http, $q, helperServices) {
 			}
 		}).then(
 			(response) => {
-				if(!service.Items.data){
+				if (!service.Items.data) {
 					var data = service.Items.find(x => x.idRencanaKerja == param.idRencanaKerja);
 					if (data) {
 						data.status = 'Usulan'
 					}
-				}else
+				} else
 					service.Items.data.status = 'Usulan'
 				def.resolve(service.Items);
 			},
@@ -240,12 +240,12 @@ function HomeService($http, $q, helperServices) {
 			}
 		}).then(
 			(response) => {
-				if(!service.Items.data){
+				if (!service.Items.data) {
 					var data = service.Items.find(x => x.idRencanaKerja == param.idRencanaKerja);
 					if (data) {
 						data.status = 'Usulan'
 					}
-				}else
+				} else
 					service.Items.data.status = 'Usulan'
 				def.resolve(service.Items);
 			},
@@ -389,7 +389,7 @@ function EventService($http, $q, helperServices) {
 function BukutamuService($http, $q, helperServices) {
 	var url = helperServices.url + '/objekwisata/guest/bukutamu/';
 	var service = {};
-	
+
 	service.post = function (param) {
 		var def = $q.defer();
 		$http({
